@@ -1,12 +1,9 @@
-import React, {Component} from 'react'
-import { render } from 'react-dom'
-import QuestionRow from './QuestionRow.jsx'
+import React from 'react'
 
 const App = () => {
 	return (
 	<div>
-			<h1>Employee Survey</h1>
-			<QuestionRow />
+			<h1>Employee Tracker</h1>
 	</div>
 	)
 }
