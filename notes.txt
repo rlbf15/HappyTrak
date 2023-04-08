@@ -1,0 +1,46 @@
+Postgres URL: postgres://xfhjvaaf:kaHfdj5HE54NhHzx8WIV6fv59Zp8_E8V@raja.db.elephantsql.com/xfhjvaaf
+Postgres Pass: kaHfdj5HE54NhHzx8WIV6fv59Zp8_E8V
+Excalidraw Link: https://excalidraw.com/#room=a09e884320a51966be84,f5codh1sbC1o3cU5RNam0A
+
+
+Table creation
+--------------
+
+CREATE TABLE survey (
+  id serial PRIMARY KEY,
+  week INTEGER NOT NULL,
+  employee_id INTEGER NOT NULL,
+  comfort INTEGER NOT NULL,
+  culture INTEGER NOT NULL,
+  mood INTEGER NOT NULL
+);
+
+Join Tables to be Mapped
+-------------------------
+
+
+
+Show tables
+-----------
+
+SELECT
+    table_schema || '.' || table_name as show_tables
+FROM
+    information_schema.tables
+WHERE
+    table_type = 'BASE TABLE'
+AND
+    table_schema NOT IN ('pg_catalog', 'information_schema');
+
+
+Show survey table_schema
+------------------------
+SELECT column_name, data_type, character_maximum_length
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE table_name = 'survey';
+
+--- change survey table column_names to:
+
+question_0
+question_1
+question_2
