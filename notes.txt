@@ -3,7 +3,6 @@ Postgres Pass: kaHfdj5HE54NhHzx8WIV6fv59Zp8_E8V
 Excalidraw Link: https://excalidraw.com/#room=a09e884320a51966be84,f5codh1sbC1o3cU5RNam0A
 
 
-
 Table creation
 --------------
 
@@ -39,3 +38,9 @@ Show survey table_schema
 SELECT column_name, data_type, character_maximum_length
 FROM INFORMATION_SCHEMA.COLUMNS
 WHERE table_name = 'survey';
+
+--- change survey table column_names to:
+
+question_0
+question_1
+question_2
