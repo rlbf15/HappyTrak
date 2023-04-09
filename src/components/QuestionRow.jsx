@@ -1,94 +1,110 @@
-import React, { Component } from 'react'
-import { useState } from 'react'
+import React from 'react'
+import { useState} from 'react'
 
 
-
-
-///////////////////////////////////////////////////////
-////// ARRAY TO POPULATE QUESTIONS IN SURVEY //////////
-//////////////////////////////////////////////////////
-
+// array to populate questions in survey
 const questions = [
-  'How accomplished do you feel this week?',
-  'How supportive is your manager?',
-  'How comfortable do you feel about sharing your ideas?'
+  'What is your level of job satisfaction?',
+  'Does your manager value your feedback?',
+  'Do you feel appreciated and respected at work?',
+  'Do you feel connected to your coworkers?'
 ]
 
-///////////////////////////////////////////////////
-////// POST REQUEST WHEN SUBMIT IS CLICKED /////////
-///////////////////////////////////////////////////
 
-
-
-
+// component to be rendered on page
 const QuestionRow = () => {
 
+  // initalizing state
+  const [rating, setRating] = useState([])
+  const [employeeID, setEmployeeID] = useState('')
+  const [week, setWeek] = useState('')
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  console.log('target Value', e.target);
-  console.log('rating', rating)
-  fetch('/survey', {
-    method: 'POST',
-    headers: {
-      'Content-Type' : 'application/json'
-    },
-    // body:JSON.stringify(),
-    // {
-    //   week: 1,
-    //   employee_id: 0,
-    //   question_0: 1,
-    //   question_1: 1,
-    //   question_2: 1
-    // }
-  })
-  .then(req=> console.log('resbody', req.body))
-}
-
-
-  const [q1rating, setq1Rating] = useState('')
-  const onOptionChange0 = e => {
-    setRating(e.target.value)
+  // handling choice (rating) changes and updating state
+  const updateChoice = (i, value) => {
+    const newRatings = [...rating];
+    newRatings[i] = value; 
+    setRating(newRatings);
+  }
+  
+  // capturing employee ID and updating state
+  const updateEmployeeID = (e) => {
+    const ID = e.target.value;
+    setEmployeeID(ID);
   }
 
-  const [q2rating, setq2Rating] = useState('')
-  const onOptionChange1 = e => {
-    setRating(e.target.value)
+  // capturing week number and updating state
+  const updateWeek = (e) => {
+    const newWeek = e.target.value;
+    setWeek(newWeek);
   }
 
-  const [q3rating, setq3Rating] = useState('')
-  const onOptionChange2 = e => {
-    setRating(e.target.value)
+  // converting user input values (rating) into schema format that DB is expecting
+  const data = {}
+  for (let i = 0; i < rating.length; i++) {
+    data[`question_${i}`] = rating[i];
+  }
+  data['week'] = week;
+  data['employee_ID'] = employeeID;
+  
+  // handling post request on submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch('/survey', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
   }
 
+  
   const individualQuestion = [];
-  for (let i=0; i<questions.length; i++) {
+  for (let i = 0; i < questions.length; i++) {
     individualQuestion.push(
-      <div key={`Question_${i}`}>{questions[i]}
-        <input type="radio" name={`choice_${i}`} value="1" onChange={onOptionChange0} />
-        <input type="radio" name={`choice_${i}`} value="2" onChange={onOptionChange1} />
-        <input type="radio" name={`choice_${i}`} value="3" onChange={onOptionChange2} />
+      <div key={`Question_${i}`}> {questions[i]}<br />
+
+        <label htmlFor="{`choice_${i}`}">   1 </label>
+        <input type="radio" name={`choice_${i}`} onChange={() => updateChoice(i, 1)} />
+        <label htmlFor="{`choice_${i}`}">   2 </label>
+        <input type="radio" name={`choice_${i}`} onChange={() => updateChoice(i, 2)} />
+        <label htmlFor="{`choice_${i}`}">   3 </label>
+        <input type="radio" name={`choice_${i}`} onChange={()=> updateChoice(i, 3)} /> 
+        <label htmlFor="{`choice_${i}`}">   4 </label>
+        <input type="radio" name={`choice_${i}`} onChange={()=> updateChoice(i, 4)} /> 
+        <label htmlFor="{`choice_${i}`}">   5 </label>
+        <input type="radio" name={`choice_${i}`} onChange={() => updateChoice(i, 5)} /> 
+        
       </div >);
-  }
+  };
+
+
   return (
+
     <form onSubmit={handleSubmit}>
+
+      <label htmlFor="week">Week:</label>
+      <select name="week" onChange={updateWeek}>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select><br /><br />
+      <input type="text" id="employeeId" placeholder="Please enter Employee ID" onChange={updateEmployeeID} />
+      <p id="SurveyDescription">Please select a rating to answer each question, where 1 is the lowest and 5 is the highest.</p>
       <label className="QuestionRow">
         {individualQuestion}
-      </label>
-      <input type="submit" value="CLICK"/>
+      </label><br />
+      <input type="submit" value="SUBMIT" />
+
     </form>
-  )
+
+  );
 }
 
 export default QuestionRow;
 
-{/* <form action="/action_page.php">
-  <label for="fname">First name:</label><br>
-  <input type="text" id="fname" name="fname" value="John"><br>
-  <label for="lname">Last name:</label><br>
-  <input type="text" id="lname" name="lname" value="Doe"><br><br>
-  <input type="submit" value="Submit">
-</form> */}
+
 
 
 /*
@@ -100,40 +116,13 @@ Current Bugs:
 
 
 
+    // {
+    //   week: 1,
+    //   employee_id: 0,
+    //   question_0: 1,
+    //   question_1: 1,
+    //   question_2: 1
+    // }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// const questions = [
-//   'How accomplished do you feel this week?',
-//   'How supportive is your manager?',
-//   'How comfortable do you feel about sharing your ideas?'
-// ]
-
-
-// const questionBlock = () => {
-//   // const individualQuestion = [];
-//   // for (let i = 0; i < questions.length; i++) {
-//   //   individualQuestion.push(<div key={`Question_${i}`}>{questions[i]}</div>)
-//   // }
-//       return (
-//         <div>
-//           hi
-//           {/* {individualQuestion} */}
-//         </div>
-//     )
-// }
-
-
-// export default questionBlock;
