@@ -3,8 +3,6 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
-//adding a thing
-
 app.use(express.json());
 
 app.get('/survey', (req, res) => {
