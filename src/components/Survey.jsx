@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState} from 'react'
+import { useState } from 'react'
 
 
 // array to populate questions in survey
@@ -12,11 +12,13 @@ const questions = [
 
 
 // component to be rendered on page
-const QuestionRow = () => {
+const Survey = () => {
+
+  const styles = {color:"black"}
 
   // initalizing state
   const [rating, setRating] = useState([])
-  const [employeeID, setEmployeeID] = useState('')
+  const [employeeid, setEmployeeID] = useState('')
   const [week, setWeek] = useState('')
 
   // handling choice (rating) changes and updating state
@@ -41,15 +43,15 @@ const QuestionRow = () => {
   // converting user input values (rating) into schema format that DB is expecting
   const data = {}
   for (let i = 0; i < rating.length; i++) {
-    data[`question_${i}`] = rating[i];
+    data[`question_${i}`] = Number(rating[i]);
   }
-  data['week'] = week;
-  data['employee_ID'] = employeeID;
+  data['week'] = Number(week);
+  data['employee_id'] = Number(employeeid);
   
   // handling post request on submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('/survey', {
+    fetch('/api/survey', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -81,7 +83,9 @@ const QuestionRow = () => {
 
   return (
 
-    <form onSubmit={handleSubmit}>
+    <div id='survey'>
+    <h3>Please complete the following survey:</h3>
+    <form style={styles} onSubmit={handleSubmit}>
 
       <label htmlFor="week">Week:</label>
       <select name="week" onChange={updateWeek}>
@@ -92,17 +96,18 @@ const QuestionRow = () => {
       </select><br /><br />
       <input type="text" id="employeeId" placeholder="Please enter Employee ID" onChange={updateEmployeeID} />
       <p id="SurveyDescription">Please select a rating to answer each question, where 1 is the lowest and 5 is the highest.</p>
-      <label className="QuestionRow">
+      <label className="questions">
         {individualQuestion}
       </label><br />
-      <input type="submit" value="SUBMIT" />
+      <input id="surveySubmitButton" type="submit" value="SUBMIT" />
 
     </form>
+    </div>
 
   );
 }
 
-export default QuestionRow;
+export default Survey;
 
 
 
