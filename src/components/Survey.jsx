@@ -18,7 +18,7 @@ const Survey = () => {
 
   // initalizing state
   const [rating, setRating] = useState([])
-  const [employeeID, setEmployeeID] = useState('')
+  const [employeeid, setEmployeeID] = useState('')
   const [week, setWeek] = useState('')
 
   // handling choice (rating) changes and updating state
@@ -46,12 +46,12 @@ const Survey = () => {
     data[`question_${i}`] = Number(rating[i]);
   }
   data['week'] = Number(week);
-  data['employee_ID'] = Number(employeeID);
+  data['employee_id'] = Number(employeeid);
   
   // handling post request on submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('/survey', {
+    fetch('/api/survey', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
