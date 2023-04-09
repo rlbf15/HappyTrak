@@ -43,10 +43,10 @@ const Survey = () => {
   // converting user input values (rating) into schema format that DB is expecting
   const data = {}
   for (let i = 0; i < rating.length; i++) {
-    data[`question_${i}`] = rating[i];
+    data[`question_${i}`] = Number(rating[i]);
   }
-  data['week'] = week;
-  data['employee_ID'] = employeeID;
+  data['week'] = Number(week);
+  data['employee_ID'] = Number(employeeID);
   
   // handling post request on submit
   const handleSubmit = (e) => {
