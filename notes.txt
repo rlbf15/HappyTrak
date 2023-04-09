@@ -12,10 +12,10 @@ Table creation
 CREATE TABLE survey (
   id serial PRIMARY KEY,
   week INTEGER NOT NULL,
-  employee_id INTEGER NOT NULL,
-  comfort INTEGER NOT NULL,
-  culture INTEGER NOT NULL,
-  mood INTEGER NOT NULL
+  question_0 INTEGER NOT NULL,
+  question_1 INTEGER NOT NULL,
+  question_2 INTEGER NOT NULL,
+  question_3 INTEGER NOT NULL
 );
 
 Join Tables to be Mapped
@@ -42,8 +42,83 @@ SELECT column_name, data_type, character_maximum_length
 FROM INFORMATION_SCHEMA.COLUMNS
 WHERE table_name = 'survey';
 
---- change survey table column_names to:
+Add question column
+----------------------
+ALTER TABLE survey
+ADD question_i INTEGER NOT NULL;
+
+- Add 1 more question to the database
 
 question_0
 question_1
 question_2
+question_3
+
+app.get('/chart')
+
+
+Response structure that we're returning from the database 
+[
+     {
+      question: 0,
+      week_1_total: 90,
+      week_2_total: 100,
+      week_3_total: 50
+     },
+     {
+      question: 1,
+      week_1_total: 90,
+      week_2_total: 30,
+      week_3_total: 40
+     },
+  ]
+
+
+const result = [
+  {
+    question_0_total: '13'
+  },
+  {
+    question_0_total: '13'
+  }
+]
+
+[ { question_0_total: '13' }, { question_0_total: '13' } ]
+
+const responseArr =
+[
+  {
+    week_id: 1,
+    question_0: 35,
+    question_1: 50,
+    question_2: 40,
+    question_3: 25
+  },
+  {
+    week_id: 2,
+    question_0: 40,
+    question_1: 50,
+    question_2: 40,
+    question_3: 25
+  },
+  {
+    week_id: 3,
+    question_0: 10,
+    question_1: 40,
+    question_2: 25,
+    question_3: 2
+  },
+]
+
+To gather response for /api/graph:
+
+SELECT * FROM survey WHERE week=1;
+--> table of all surveys submit in week one
+
+'SELECT SUM(question_0) as question_0_total AND SUM(question_1) as question_1_total FROM survey GROUP BY week'
+
+Count number of rows in table:
+SELECT 
+   COUNT(*) 
+FROM 
+   table_name;

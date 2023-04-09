@@ -1,15 +1,20 @@
 const express = require('express');
 const path = require('path');
+const employeeController = require('./employeeController.js');
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
 
-app.get('/survey', (req, res) => {
-  res.status(200).send('hello');
+app.post('/api/survey', employeeController.createResponse, (req, res) => {
+  res.status(200).send('Survey response recorded. Thank you!');
 });
 
-app.use('/', (req, res) => {
+app.get('/api/graph', employeeController.getGraph, (req, res) => {
+  res.status(200).json(res.locals.graph);
+});
+
+app.use('/api', (req, res) => {
   res.status(404).send('cannot get page');
 });
 
