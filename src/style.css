@@ -1,0 +1,72 @@
+body {
+    background-color: hsl(240, 84%, 12%);
+}
+
+button {
+    padding: 15px 30px;
+    background-color: white;
+    color: hsl(240, 84%, 12%);
+    width: 30%;
+    margin: auto; 
+    /* margin-top: 15%; */
+    display: flex;
+    justify-content: center;
+}
+
+.mainButtons {
+  margin-top: 20%;
+}
+
+#survey h3{
+    color: white;
+    display: grid;
+    margin-bottom: -5%;
+    justify-content: center;
+}
+
+#survey {
+    margin-top: 18%;
+}
+
+#surveySubmitButton {
+ width: 30%;
+ margin-top: 50px;
+ margin-left: 30%;
+ /* margin: auto; */
+}
+
+#dashboardMessage {
+    color: white; 
+    display: grid;
+    justify-content: center;
+}
+
+#dashboardMessage h1 {
+  margin:auto;
+  margin-bottom: 5%;
+}
+#dashboardMessage h2 {
+  margin:auto;
+  margin-bottom: 20%;
+}
+#dashboardMessage h4 {
+  margin:auto;
+  margin-bottom: 5%;
+}
+
+#emp_button{
+    border-radius: 8px;
+    border: none;
+}
+
+form {
+  background-color: rgb(250, 250, 250);
+  display: grid;
+  justify-content: center;
+  margin:auto;
+  margin-top:10%;
+  width: 55%;
+  padding: 50px;
+  border-radius: 30px;
+
+}
