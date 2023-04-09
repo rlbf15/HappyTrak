@@ -57,20 +57,68 @@ question_3
 app.get('/chart')
 
 
-Response structure that they'll need back from the database: 
-{
-  [
+Response structure that we're returning from the database 
+[
      {
-      Week_id: 1
-      question_0 total rating: 90
-      question_1 total: 100
-      question_2 total: 50
+      question: 0,
+      week_1_total: 90,
+      week_2_total: 100,
+      week_3_total: 50
      },
      {
-      Week_id: 2
-      question_0 total rating: 80
-      question_1 total rating: 90
-      question_2 total rating: 40
-     }
+      question: 1,
+      week_1_total: 90,
+      week_2_total: 30,
+      week_3_total: 40
+     },
   ]
-}
+
+
+const result = [
+  {
+    question_0_total: '13'
+  },
+  {
+    question_0_total: '13'
+  }
+]
+
+[ { question_0_total: '13' }, { question_0_total: '13' } ]
+
+const responseArr =
+[
+  {
+    week_id: 1,
+    question_0: 35,
+    question_1: 50,
+    question_2: 40,
+    question_3: 25
+  },
+  {
+    week_id: 2,
+    question_0: 40,
+    question_1: 50,
+    question_2: 40,
+    question_3: 25
+  },
+  {
+    week_id: 3,
+    question_0: 10,
+    question_1: 40,
+    question_2: 25,
+    question_3: 2
+  },
+]
+
+To gather response for /api/graph:
+
+SELECT * FROM survey WHERE week=1;
+--> table of all surveys submit in week one
+
+'SELECT SUM(question_0) as question_0_total AND SUM(question_1) as question_1_total FROM survey GROUP BY week'
+
+Count number of rows in table:
+SELECT 
+   COUNT(*) 
+FROM 
+   table_name;
