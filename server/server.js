@@ -5,7 +5,7 @@ const PORT = 3000;
 
 app.use(express.json());
 
-app.get('/survey', (req, res) => {
+app.post('/survey', (req, res) => {
   res.status(200).send('hello');
 });
 

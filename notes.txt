@@ -12,10 +12,10 @@ Table creation
 CREATE TABLE survey (
   id serial PRIMARY KEY,
   week INTEGER NOT NULL,
-  employee_id INTEGER NOT NULL,
-  comfort INTEGER NOT NULL,
-  culture INTEGER NOT NULL,
-  mood INTEGER NOT NULL
+  question_0 INTEGER NOT NULL,
+  question_1 INTEGER NOT NULL,
+  question_2 INTEGER NOT NULL,
+  question_3 INTEGER NOT NULL
 );
 
 Join Tables to be Mapped
@@ -42,8 +42,35 @@ SELECT column_name, data_type, character_maximum_length
 FROM INFORMATION_SCHEMA.COLUMNS
 WHERE table_name = 'survey';
 
---- change survey table column_names to:
+Add question column
+----------------------
+ALTER TABLE survey
+ADD question_i INTEGER NOT NULL;
+
+- Add 1 more question to the database
 
 question_0
 question_1
 question_2
+question_3
+
+app.get('/chart')
+
+
+Response structure that they'll need back from the database: 
+{
+  [
+     {
+      Week_id: 1
+      question_0 total rating: 90
+      question_1 total: 100
+      question_2 total: 50
+     },
+     {
+      Week_id: 2
+      question_0 total rating: 80
+      question_1 total rating: 90
+      question_2 total rating: 40
+     }
+  ]
+}
