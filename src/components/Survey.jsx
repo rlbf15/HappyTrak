@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 // array to populate questions in survey
 const questions = [
-  'What is your level of job satisfaction?',
+  'Do you feel welcome at the company?',
   'Does your manager value your feedback?',
   'Do you feel appreciated and respected at work?',
   'Do you feel connected to your coworkers?'
@@ -58,8 +58,8 @@ const Survey = () => {
       },
       body: JSON.stringify(data)
     })
-    .then((res) => res.json)
-    .then((function(value) {window.location = 'http://localhost:3000/submitted.html'}));
+    .then((res) => res.json())
+    .then((value) => window.location = value);
   }
 
   
@@ -78,7 +78,8 @@ const Survey = () => {
         <input type="radio" name={`choice_${i}`} onChange={()=> updateChoice(i, 4)} /> 
         <label htmlFor="{`choice_${i}`}">   5 </label>
         <input type="radio" name={`choice_${i}`} onChange={() => updateChoice(i, 5)} /> 
-        
+        <br/>
+        <br/>
       </div >);
   };
 
@@ -86,10 +87,11 @@ const Survey = () => {
   return (
 
     <div id='survey'>
-    <h3>Please complete the following survey:</h3>
-    <form style={styles} onSubmit={handleSubmit}>
-
-      <label htmlFor="week">Week:</label>
+    <h3><i>Please complete the following survey:</i></h3>
+      <form style={styles} onSubmit={handleSubmit}>
+        
+      <div className="weekEmployeeId">
+      <label className="week" htmlFor="week">Week:</label>
       <select name="week" onChange={updateWeek}>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -97,7 +99,9 @@ const Survey = () => {
         <option value="4">4</option>
       </select><br /><br />
       <input type="text" id="employeeId" placeholder="Please enter Employee ID" onChange={updateEmployeeID} />
-      <p id="SurveyDescription">Please select a rating to answer each question, where 1 is the lowest and 5 is the highest.</p>
+      </div>  
+
+      <p id="SurveyDescription"><b>Please select a rating to answer each question, where 1 is the lowest and 5 is the highest.</b></p>
       <label className="questions">
         {individualQuestion}
       </label><br />

@@ -13,12 +13,43 @@ button {
     border:none;
 }
 
+#dashboardMessage {
+  color: white; 
+  display: grid;
+  justify-content: center;
+}
+
+#dashboardMessage h1 {
+margin:auto;
+margin-bottom: 5%;
+}
+#dashboardMessage h2 {
+margin:auto;
+margin-bottom: 20%;
+}
+#dashboardMessage h4 {
+margin:auto;
+margin-bottom: 5%;
+}
+
+#emp_button{
+border-radius: 8px;
+border: none;
+box-shadow: 0 0 60px #f8fbfde3;
+cursor: pointer;
+
+}
+
 .mainButtons {
   margin-top: 20%; 
 }
 
-#weekEmployeeID {
+.weekEmployeeId {
   display: flex;
+  justify-content: center;
+  margin:auto;
+  left: 0;
+  right: 0;
 }
 
 #survey h3{
@@ -51,60 +82,6 @@ button {
   box-shadow: 0 0 500px #f8fbfde3;
 }
 
-.radioSelection{
-  display:flex;
-  justify-content: space-around;
-}
-
-
-#dashboardMessage {
-    color: white; 
-    display: grid;
-    justify-content: center;
-}
-
-#dashboardMessage h1 {
-  margin:auto;
-  margin-bottom: 5%;
-}
-#dashboardMessage h2 {
-  margin:auto;
-  margin-bottom: 20%;
-}
-#dashboardMessage h4 {
-  margin:auto;
-  margin-bottom: 5%;
-}
-
-#emp_button{
-  border-radius: 8px;
-  border: none;
-  box-shadow: 0 0 60px #f8fbfde3;
-  cursor: pointer;
-  
-}
-
-#emp_button:after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #ffff00;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
-}
-
-#emp_button:hover:after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
-}
-
-
-
-
 form {
   font-family:sans-serif; 
   background-color: #fefefeeb;
@@ -113,21 +90,20 @@ form {
   justify-content: center;
   margin:auto;
   margin-top:7%;
-  width: 45%;
+  width: 40%;
   padding: 50px;
   border-radius: 20px;
-}
-
-#surveyHeader{
-  font-family:arial;
+  box-shadow: 0 0 70px #f8fbfdb4;
 }
 
 #employeeId{
   /* display:flex; */
   width: max-content;
-  margin-right: 0%;
+  display:flex;
+  align-items: space-around;
+  /* margin-right: 0%; */
   margin-left: 0%;
-  margin:auto;
+  /* margin:auto; */
   /* justify-content: center; */
 }
 
@@ -145,6 +121,7 @@ form {
   margin:20% auto;
   text-align: center;
   padding-bottom: 20px;
+  box-shadow: 0 0 70px #f8fbfdc3;
 
 }
 
@@ -152,11 +129,12 @@ form {
   position:absolute;
   left: 0;
   right: 0;
-  padding: 0 0 -3 0 ;
+  padding: 0 10 -3 10 ;
   margin-top:40px;
   height: 40px;
   width: 80px;
   text-align:center;
+  text-decoration: none;
 }
 
 /* input, .week{
