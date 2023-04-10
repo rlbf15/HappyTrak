@@ -20,15 +20,15 @@ const App = () => {
     datasets: [
       {
 		label: "Employee Satisfaction", 
-		data: surveyData.map((data) => data.q1)
+		data: surveyData.map((data) => data.question_0)
       }, 
       {
         label: "Employee Happiness", 
-        data: surveyData.map((data) => data.q2)
+        data: surveyData.map((data) => data.question_1)
       },
       {
         label: "Employee Comfort", 
-        data: surveyData.map((data) => data.q3)
+        data: surveyData.map((data) => data.question_2)
       },
     ]
 	})
