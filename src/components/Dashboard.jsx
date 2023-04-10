@@ -6,13 +6,13 @@ const Dashboard = () => {
 		<div className='mainButtons'>
       <section id= 'dashboardMessage'> 
         <h1> WELCOME</h1>
-          <h2>to Employee Portal</h2>
-          <h4>Select your role:</h4>
+          <h2>to HappyTrak!</h2>
+          <h4><i>Select your role:</i></h4>
       </section>
       <Link to='/survey' style={{ textDecoration: 'none' }}> 
         <button id="emp_button">EMPLOYEE</button> 
       </Link><br/>
-      <Link to='/survey' style={{ textDecoration: 'none' }}> 
+      <Link to='/confirmEmployer' style={{ textDecoration: 'none' }}> 
         <button id="emp_button" >EMPLOYER</button> 
       </Link>
 		</div>
