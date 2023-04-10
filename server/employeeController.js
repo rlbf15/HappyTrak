@@ -26,11 +26,21 @@ employeeController.createResponse = async (req, res, next) => {
     question_2,
     question_3,
   ];
+  findArray = [week, employee_id];
   const insertResponse =
     'INSERT INTO survey(week, employee_id, question_0, question_1, question_2, question_3) VALUES ($1, $2, $3, $4, $5, $6);';
+  const findResponse = `SELECT * FROM survey WHERE week=($1) AND employee_id=($2);`;
   try {
-    await db.query(insertResponse, reqArray);
-    next();
+    // check if employee_id and week already exist
+    const findResult = await db.query(findResponse, findArray);
+    if (findResult.rows.length === 0) {
+      console.log('Submission already exists');
+      next();
+    } else {
+      const recordSubmit = await db.query(insertResponse, reqArray);
+      console.log('New submission added!');
+      next();
+    }
   } catch (err) {
     baseError.log = `Error caught in createResponse middleware: ${err}`;
     baseError.message.err = 'Could not store survey result.';
@@ -54,6 +64,39 @@ employeeController.getGraph = async (req, res, next) => {
     baseError.log = `Error caught in getGraph: ${err}`;
     baseError.message.err = `Could not retrieve data`;
     return next(baseError);
+  }
+};
+
+employeeController.resetAndPopulateData = async (req, res, next) => {
+  const reset = `BEGIN;
+  TRUNCATE TABLE survey RESTART IDENTITY;
+  INSERT INTO 
+    survey (week, employee_id, question_0, question_1, question_2, question_3)
+  VALUES
+    (1, 1, 5, 4, 5, 5),
+    (2, 1, 4, 4, 5, 4),
+    (3, 1, 3, 4, 4, 4),
+    (4, 1, 3, 4, 4, 3),
+    (1, 2, 4, 5, 5, 4),
+    (2, 2, 4, 4, 4, 4),
+    (3, 2, 3, 4, 4, 4),
+    (4, 2, 3, 3, 3, 4),
+    (1, 3, 5, 3, 4, 3),
+    (2, 3, 3, 3, 4, 3),
+    (3, 3, 3, 3, 4, 3),
+    (4, 3, 3, 2, 4, 3),
+    (1, 4, 5, 5, 4, 4),
+    (2, 4, 4, 5, 4, 4),
+    (3, 4, 4, 5, 4, 3),
+    (4, 4, 3, 5, 4, 3);
+  COMMIT;`;
+  try {
+    await db.query(reset);
+    next();
+  } catch (err) {
+    baseError.log = `Error in employeeController.resetAndPopulateData: ${err}`;
+    baseError.message.err = 'Could not reset and repopulate database.';
+    next(baseError);
   }
 };
 
