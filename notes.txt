@@ -65,7 +65,12 @@ VALUES
     (4, 4, 3, 5, 4, 3);
 
 
-
+Transaction, ex:
+----------------
+BEGIN;
+INSERT INTO users (username , password ) VALUES ('a value', 'a value') RETURNING userid;
+INSERT INTO houses (userid, houseid ) VALUES ('returned_value' , 'a value');
+COMMIT;
 
 
 
