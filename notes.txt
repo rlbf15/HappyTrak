@@ -6,6 +6,14 @@ Postgres Pass: kaHfdj5HE54NhHzx8WIV6fv59Zp8_E8V
 Excalidraw Link: https://excalidraw.com/#room=a09e884320a51966be84,f5codh1sbC1o3cU5RNam0A
 
 
+==== test database ====
+
+Postgres URL: postgres://ykmlujta:cki1iIqyaYqsifgPZ2UutCrUpsKdQv9R@kashin.db.elephantsql.com/ykmlujta
+Postgres Pass: cki1iIqyaYqsifgPZ2UutCrUpsKdQv9R
+
+=======================
+
+
 Table creation
 --------------
 
@@ -17,6 +25,54 @@ CREATE TABLE survey (
   question_2 INTEGER NOT NULL,
   question_3 INTEGER NOT NULL
 );
+
+CREATE TABLE survey (
+  id serial PRIMARY KEY,
+  week INTEGER NOT NULL,
+  employee_id INTEGER NOT NULL,
+  question_0 INTEGER NOT NULL,
+  question_1 INTEGER NOT NULL,
+  question_2 INTEGER NOT NULL,
+  question_3 INTEGER NOT NULL
+);
+
+
+Remove all data from survey table, reset id column
+--------------------------------------------------
+TRUNCATE TABLE survey 
+RESTART IDENTITY;
+
+Add starter data to survey table
+--------------------------------
+INSERT INTO 
+    survey (week, employee_id, question_0, question_1, question_2, question_3)
+VALUES
+    (1, 1, 5, 4, 5, 5),
+    (2, 1, 4, 4, 5, 4),
+    (3, 1, 3, 4, 4, 4),
+    (4, 1, 3, 4, 4, 3),
+    (1, 2, 4, 5, 5, 4),
+    (2, 2, 4, 4, 4, 4),
+    (3, 2, 3, 4, 4, 4),
+    (4, 2, 3, 3, 3, 4),
+    (1, 3, 5, 3, 4, 3),
+    (2, 3, 3, 3, 4, 3),
+    (3, 3, 3, 3, 4, 3),
+    (4, 3, 3, 2, 4, 3),
+    (1, 4, 5, 5, 4, 4),
+    (2, 4, 4, 5, 4, 4),
+    (3, 4, 4, 5, 4, 3),
+    (4, 4, 3, 5, 4, 3);
+
+
+Transaction, ex:
+----------------
+BEGIN;
+INSERT INTO users (username , password ) VALUES ('a value', 'a value') RETURNING userid;
+INSERT INTO houses (userid, houseid ) VALUES ('returned_value' , 'a value');
+COMMIT;
+
+
 
 Join Tables to be Mapped
 -------------------------
@@ -54,38 +110,14 @@ question_1
 question_2
 question_3
 
-app.get('/chart')
+app.get('/api/graph')
 
 
-Response structure that we're returning from the database 
-[
-     {
-      question: 0,
-      week_1_total: 90,
-      week_2_total: 100,
-      week_3_total: 50
-     },
-     {
-      question: 1,
-      week_1_total: 90,
-      week_2_total: 30,
-      week_3_total: 40
-     },
-  ]
+Gather response for /api/graph
+------------------------------
+'SELECT SUM(question_0) as question_0_total AND SUM(question_1) as question_1_total FROM survey GROUP BY week'
 
-
-const result = [
-  {
-    question_0_total: '13'
-  },
-  {
-    question_0_total: '13'
-  }
-]
-
-[ { question_0_total: '13' }, { question_0_total: '13' } ]
-
-const responseArr =
+Response structure that we're returning from the database:
 [
   {
     week_id: 1,
@@ -110,14 +142,14 @@ const responseArr =
   },
 ]
 
-To gather response for /api/graph:
 
+
+Other queries:
+
+--> Get table of all surveys submitted in week one:
 SELECT * FROM survey WHERE week=1;
---> table of all surveys submit in week one
 
-'SELECT SUM(question_0) as question_0_total AND SUM(question_1) as question_1_total FROM survey GROUP BY week'
-
-Count number of rows in table:
+--> Count number of rows in table:
 SELECT 
    COUNT(*) 
 FROM 
