@@ -12,7 +12,7 @@ const Dashboard = () => {
       <Link to='/survey' style={{ textDecoration: 'none' }}> 
         <button id="emp_button">EMPLOYEE</button> 
       </Link><br/>
-      <Link to='/survey' style={{ textDecoration: 'none' }}> 
+      <Link to='/confirmEmployer' style={{ textDecoration: 'none' }}> 
         <button id="emp_button" >EMPLOYER</button> 
       </Link>
 		</div>

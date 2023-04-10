@@ -2,32 +2,44 @@ import React, {Component} from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Survey from './Survey.jsx'
-
-// import styled from ''
+import ConfirmEmployer from './ConfirmEmployer.jsx'
 import Dashboard from './Dashboard.jsx'
-// import Graphs from 
+
+import Chart from "chart.js/auto";
+import { useState } from "react";
+import { surveyData } from "../utils/Data.js";
+import LineChart from './LineChart.jsx';
 
 import '../style.css'
 
-// const App = () => {
-// 	return (
-// 	<div>
-// 			<h1>Employee Survey</h1>
-// 			<QuestionRow />
-// 	</div>
-// 	)
-// }
 
 
 const App = () => {
+	const [chartData, setChartData] = useState({
+		labels: surveyData.map((data) => data.week_id),
+    datasets: [
+      {
+		label: "Employee Satisfaction", 
+		data: surveyData.map((data) => data.q1)
+      }, 
+      {
+        label: "Employee Happiness", 
+        data: surveyData.map((data) => data.q2)
+      },
+      {
+        label: "Employee Comfort", 
+        data: surveyData.map((data) => data.q3)
+      },
+    ]
+	})
     return (
         
 		<div className='container'>
 			<Routes>
-				{/* <Route path='/' element={<h1>My App</h1>}/> */}
           <Route path='/survey' element={<Survey/> }/>
-				{/* <Route path='/graph' element={ <Graph /> }/> */}
+				<Route path='/graph' element={ <LineChart chartData={chartData}/> }/>
 				<Route path='/' element={ <Dashboard /> } />
+				<Route path='/confirmEmployer' element={ <ConfirmEmployer /> } />
 			</Routes>
 		</div>
 )

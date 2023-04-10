@@ -57,7 +57,9 @@ const Survey = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
-    });
+    })
+    .then((res) => res.json)
+    .then((function(value) {window.location = 'http://localhost:3000/submitted.html'}));
   }
 
   
