@@ -1,0 +1,154 @@
+From RLBF, creators of HappyTrak :
+
+Things that don't work-
+- Rendering chart with data from database (currently renders static data from Data.js)
+- No authentication function 
+
+
+Postgres URL: postgres://xfhjvaaf:kaHfdj5HE54NhHzx8WIV6fv59Zp8_E8V@raja.db.elephantsql.com/xfhjvaaf
+Postgres Pass: kaHfdj5HE54NhHzx8WIV6fv59Zp8_E8V
+Excalidraw Link: https://excalidraw.com/#room=a09e884320a51966be84,f5codh1sbC1o3cU5RNam0A
+Presentation Slide Link: https://www.canva.com/design/DAFfujigCbw/ODLo16_6YkPSeXaeidG3EA/edit?utm_content=DAFfujigCbw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+
+
+Table creation
+--------------
+
+CREATE TABLE survey (
+  id serial PRIMARY KEY,
+  week INTEGER NOT NULL,
+  question_0 INTEGER NOT NULL,
+  question_1 INTEGER NOT NULL,
+  question_2 INTEGER NOT NULL,
+  question_3 INTEGER NOT NULL
+);
+
+CREATE TABLE survey (
+  id serial PRIMARY KEY,
+  week INTEGER NOT NULL,
+  employee_id INTEGER NOT NULL,
+  question_0 INTEGER NOT NULL,
+  question_1 INTEGER NOT NULL,
+  question_2 INTEGER NOT NULL,
+  question_3 INTEGER NOT NULL
+);
+
+
+Remove all data from survey table, reset id column
+--------------------------------------------------
+TRUNCATE TABLE survey 
+RESTART IDENTITY;
+
+Add starter data to survey table
+--------------------------------
+INSERT INTO 
+    survey (week, employee_id, question_0, question_1, question_2, question_3)
+VALUES
+    (1, 1, 5, 4, 5, 5),
+    (2, 1, 4, 4, 5, 4),
+    (3, 1, 3, 4, 4, 4),
+    (4, 1, 3, 4, 4, 3),
+    (1, 2, 4, 5, 5, 4),
+    (2, 2, 4, 4, 4, 4),
+    (3, 2, 3, 4, 4, 4),
+    (4, 2, 3, 3, 3, 4),
+    (1, 3, 5, 3, 4, 3),
+    (2, 3, 3, 3, 4, 3),
+    (3, 3, 3, 3, 4, 3),
+    (4, 3, 3, 2, 4, 3),
+    (1, 4, 5, 5, 4, 4),
+    (2, 4, 4, 5, 4, 4),
+    (3, 4, 4, 5, 4, 3),
+    (4, 4, 3, 5, 4, 3);
+
+
+Transaction, ex:
+----------------
+BEGIN;
+INSERT INTO users (username , password ) VALUES ('a value', 'a value') RETURNING userid;
+INSERT INTO houses (userid, houseid ) VALUES ('returned_value' , 'a value');
+COMMIT;
+
+
+
+Join Tables to be Mapped
+-------------------------
+
+
+
+Show tables
+-----------
+
+SELECT
+    table_schema || '.' || table_name as show_tables
+FROM
+    information_schema.tables
+WHERE
+    table_type = 'BASE TABLE'
+AND
+    table_schema NOT IN ('pg_catalog', 'information_schema');
+
+
+Show survey table_schema
+------------------------
+SELECT column_name, data_type, character_maximum_length
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE table_name = 'survey';
+
+Add question column
+----------------------
+ALTER TABLE survey
+ADD question_i INTEGER NOT NULL;
+
+- Add 1 more question to the database
+
+question_0
+question_1
+question_2
+question_3
+
+app.get('/api/graph')
+
+
+Gather response for /api/graph
+------------------------------
+'SELECT SUM(question_0) as question_0_total AND SUM(question_1) as question_1_total FROM survey GROUP BY week'
+
+Response structure that we're returning from the database:
+[
+  {
+    week_id: 1,
+    question_0: 35,
+    question_1: 50,
+    question_2: 40,
+    question_3: 25
+  },
+  {
+    week_id: 2,
+    question_0: 40,
+    question_1: 50,
+    question_2: 40,
+    question_3: 25
+  },
+  {
+    week_id: 3,
+    question_0: 10,
+    question_1: 40,
+    question_2: 25,
+    question_3: 2
+  },
+]
+
+
+
+Other queries:
+
+--> Get table of all surveys submitted in week one:
+SELECT * FROM survey WHERE week=1;
+
+--> Count number of rows in table:
+SELECT 
+   COUNT(*) 
+FROM 
+   table_name;

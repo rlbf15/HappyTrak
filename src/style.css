@@ -1,0 +1,141 @@
+body {
+    background-color: hsl(240, 84%, 12%);
+}
+
+button {
+    padding: 15px 30px;
+    background-color: white;
+    color: hsl(240, 84%, 12%);
+    width: 30%;
+    margin: auto; 
+    display: flex;
+    justify-content: center;
+    border:none;
+}
+
+
+/* Dashboard */
+
+#dashboardMessage {
+  color: white; 
+  display: grid;
+  justify-content: center;
+}
+
+#dashboardMessage h1 {
+margin:auto;
+margin-bottom: 5%;
+}
+#dashboardMessage h2 {
+margin:auto;
+margin-bottom: 20%;
+}
+#dashboardMessage h4 {
+margin:auto;
+margin-bottom: 5%;
+}
+
+#emp_button{
+border-radius: 8px;
+border: none;
+box-shadow: 0 0 60px #f8fbfde3;
+cursor: pointer;
+
+}
+
+.mainButtons {
+  margin-top: 20%; 
+}
+
+.weekEmployeeId {
+  display: flex;
+  justify-content: center;
+  margin:auto;
+  left: 0;
+  right: 0;
+}
+
+#survey h3{
+    color: white;
+    display: grid;
+    margin-bottom: -5%;
+    justify-content: center;
+}
+
+#survey {
+    margin-top: 18%;
+}
+
+#surveyDescription {
+  font-size: 18px;
+}
+
+#surveySubmitButton {
+  position: absolute;
+  background-color:#ffffffc6;
+  color:hsl(240, 84%, 12%);
+  border:none;
+  width: 15%;
+  height: 30px;
+  left: 0;
+  right: 0;
+  margin-top: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 500px #f8fbfde3;
+}
+
+form {
+  font-family:sans-serif; 
+  background-color: #fefefeeb;
+  font-size:16px;
+  /* display: grid; */
+  justify-content: center;
+  margin:auto;
+  margin-top:7%;
+  width: 40%;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 0 0 70px #f8fbfdb4;
+}
+
+#employeeId{
+  /* display:flex; */
+  width: max-content;
+  display:flex;
+  align-items: space-around;
+  /* margin-right: 0%; */
+  margin-left: 0%;
+  /* margin:auto; */
+  /* justify-content: center; */
+}
+
+.week{
+  margin: auto;
+  margin-right: 0%;
+}
+
+#confirmEmployer {
+  color: white;
+  border: solid;
+  border-color: white; 
+  width: 500px;
+  border-radius: 30px;
+  margin:20% auto;
+  text-align: center;
+  padding-bottom: 20px;
+  box-shadow: 0 0 70px #f8fbfdc3;
+
+}
+
+#confirmSubmit{
+  position:absolute;
+  left: 0;
+  right: 0;
+  padding: 0 10 -3 10 ;
+  margin-top:40px;
+  height: 40px;
+  width: 80px;
+  text-align:center;
+  text-decoration: none;
+}
