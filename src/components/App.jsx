@@ -1,12 +1,10 @@
-import React, {Component} from 'react'
-import {useEffect} from 'react'
-import { render } from 'react-dom'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import React from 'react'
+import { Routes, Route} from 'react-router-dom'
 import Survey from './Survey.jsx'
 import ConfirmEmployer from './ConfirmEmployer.jsx'
 import Dashboard from './Dashboard.jsx'
 
-import Chart from "chart.js/auto";
+// import Chart from "chart.js/auto";
 import { useState } from "react";
 import { surveyData } from "../utils/Data.js";
 import LineChart from './LineChart.jsx';
@@ -16,39 +14,7 @@ import '../style.css'
 
 
 const App = () => {
-//   const [bool, setBool] = useState(false)
-//   let whatever;
-//   let chartData;
-//   useEffect(() => {
-//     fetch('/api/graph')
-//       .then((data) => data.json())
-//       .then((data) => {
-//     console.log('sdlfjdkls', data);
-//     whatever = data;
-//   })
-//     .then(() => {
-//       console.log('whateverrrr', whatever)
-      
-//       chartData = {
-//         labels: whatever.map((hello) => hello.week_id),
-//         datasets: [
-//           {
-//             label: "Employee Satisfaction",
-//             data: whatever.map((hello) =>hello.question_0)
-//           },
-//           {
-//             label: "Employee Happiness",
-//             data: whatever.map((hello) => hello.question_2)
-//           },
-//           {
-//             label: "Employee Comfort",
-//             data: whatever.map((hello) => hello.question_1)
-//           },
-//         ]
-//       }
-//       setBool(true);
-//     })
-// }, [])
+
 	const [chartData, setChartData] = useState({
     labels: surveyData.map((data) => data.week_id),
     datasets: [
@@ -72,8 +38,6 @@ const App = () => {
   })
 
 
-
-
     return (
         
 		<div className='container'>
@@ -89,4 +53,44 @@ const App = () => {
 
 
 
-  export default App;
+export default App;
+  
+
+
+
+
+/// ATTEMPT TO PLUG DATA FROM DATABASE TO CHART 
+
+//   const [bool, setBool] = useState(false)
+//   let whatever;
+//   let chartData;
+//   useEffect(() => {
+//     fetch('/api/graph')
+//       .then((data) => data.json())
+//       .then((data) => {
+//     console.log('sdlfjdkls', data);
+//     whatever = data;
+//   })
+//     .then(() => {
+//       console.log('whateverrrr', whatever)
+      
+//       chartData = {
+//         labels: whatever.map((data) => data.week_id),
+//         datasets: [
+//           {
+//             label: "Employee Satisfaction",
+//             data: whatever.map((data) => data.question_0)
+//           },
+//           {
+//             label: "Employee Happiness",
+//             data: whatever.map((data) => data.question_2)
+//           },
+//           {
+//             label: "Employee Comfort",
+//             data: whatever.map((data) => data.question_1)
+//           },
+//         ]
+//       }
+//       setBool(true);
+//     })
+// }, [])

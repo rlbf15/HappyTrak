@@ -1,17 +1,15 @@
+From RLBF, creators of HappyTrak :
 
- 
+Things that don't work-
+- Rendering chart with data from database (currently renders static data from Data.js)
+- No authentication function 
+
 
 Postgres URL: postgres://xfhjvaaf:kaHfdj5HE54NhHzx8WIV6fv59Zp8_E8V@raja.db.elephantsql.com/xfhjvaaf
 Postgres Pass: kaHfdj5HE54NhHzx8WIV6fv59Zp8_E8V
 Excalidraw Link: https://excalidraw.com/#room=a09e884320a51966be84,f5codh1sbC1o3cU5RNam0A
+Presentation Slide Link: https://www.canva.com/design/DAFfujigCbw/ODLo16_6YkPSeXaeidG3EA/edit?utm_content=DAFfujigCbw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
-
-==== test database ====
-
-Postgres URL: postgres://ykmlujta:cki1iIqyaYqsifgPZ2UutCrUpsKdQv9R@kashin.db.elephantsql.com/ykmlujta
-Postgres Pass: cki1iIqyaYqsifgPZ2UutCrUpsKdQv9R
-
-=======================
 
 
 Table creation
