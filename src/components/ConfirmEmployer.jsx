@@ -1,18 +1,8 @@
-import React, {useEffect, useState} from 'react'
-import { Link, redirect } from 'react-router-dom'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 
 const ConfirmEmployer = () => {
-  const [chartData, setChartData] = useState('')
-
-  // const handleClick = () => {
-  //       fetch('/api/graph')
-  //       .then((data) => data.json())
-  //       .then((data) => {
-  //         console.log(data)
-  //       })
-
-  //   }
 
     return (
         <div id= 'confirmEmployer'>
@@ -25,7 +15,6 @@ const ConfirmEmployer = () => {
     )
 }
 
-// export default DATA, ConfirmEmployer
 export default ConfirmEmployer
 
 

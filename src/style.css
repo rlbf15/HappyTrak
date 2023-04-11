@@ -13,6 +13,9 @@ button {
     border:none;
 }
 
+
+/* Dashboard */
+
 #dashboardMessage {
   color: white; 
   display: grid;
@@ -136,21 +139,3 @@ form {
   text-align:center;
   text-decoration: none;
 }
-
-/* input, .week{
-  display:flex;
-  flex: row
-} */
-
-
-
-/*
-- changed form: background color to transparent white, took off border radius
-- took off form: display grid to make week and drop down on same line
-- added week tag and set width to 37%
--box shadow and cursor to emp buttons
--submit button to position: absolute to push it outside form box; changed many things***
-- button border set to none
-- changed form font size and added space in survey jsx to each question block
-
-*/

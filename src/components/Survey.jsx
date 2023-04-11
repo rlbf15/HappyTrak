@@ -117,23 +117,3 @@ export default Survey;
 
 
 
-
-/*
-Current Bugs:
-  - The onSubmit Functionality: It sometimes console logs what we want. Other times, there is no console log. 
-  - Getting createRoot error (may have something to do with index.js)
-  - theres a weird /? and in the console a weird 8080/ws
-*/
-
-
-
-    // {
-    //   week: 1,
-    //   employee_id: 0,
-    //   question_0: 1,
-    //   question_1: 1,
-    //   question_2: 1
-    // }
-
-
-
