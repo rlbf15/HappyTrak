@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
-const employeeController = require('./employeeController.js');
+const dataFlowController = require('./dataFlowController')
 const app = express();
 const PORT = 3000;
 
@@ -9,21 +8,35 @@ app.use(express.json());
 
 app.use(express.static(path.resolve(__dirname, '../src')));
 
-app.post('/api/survey', employeeController.createResponse, (req, res) => {
-  res.status(200).json('http://localhost:3000/submitted.html'); // send result string to be displayed on submitted.html
-});
+//login route
+app.post('/login',(req, res) => {
 
-app.get('/api/graph', employeeController.getGraph, (req, res) => {
-  res.status(200).json(res.locals.graph);
-});
+})
 
-app.get('/api/reset', employeeController.resetAndPopulateData, (req, res) => {
-  res.status(200).send('Survey data reset and repopulated');
-});
+//register route
+app.post('/register',(req, res) => {
 
-app.use('/api', (req, res) => {
-  res.status(404).send('Cannot get page');
-});
+})
+
+//save survery to DB
+app.post('/sendSurvery', dataFlowController.saveSurvey , (req, res) => {
+  res.status(200).json('data saved')
+})
+
+
+//get survey data from db
+app.get('/getSurvey', dataFlowController.getSurvey ,(req, res) => {
+  console.log('get')
+  res.json('getSurvey')
+})
+
+//get notification updates
+app.get('/notifications', (req, res) => {
+
+})
+
+
+
 
 app.use((err, req, res, next) => {
   const defaultErr = {
