@@ -9,7 +9,8 @@ app.use(express.json());
 
 app.use(express.static(path.resolve(__dirname, '../src')));
 
-app.post('/api/survey', employeeController.createResponse, (req, res) => {
+app.post('/api/survey', /*employeeController.createResponse,*/ (req, res) => {
+  console.log(req.body)
   res.status(200).json('http://localhost:3000/submitted.html'); // send result string to be displayed on submitted.html
 });
 
