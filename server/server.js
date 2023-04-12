@@ -2,12 +2,31 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const employeeController = require('./employeeController.js');
+const employerController = require('./controllers/employerController');
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static(path.resolve(__dirname, '../src')));
+
+app.post('/api/createEmployer',
+  // () => {console.log('post req'); next()},
+  employerController.createEmployer,
+  (req, res) => {
+    res.status(200).json(res.locals.employer)
+  }
+);
+
+app.post('/api/confirmEmployer',
+  employerController.verifyEmployer,
+  // sessionController.isLoggedIn,
+  (req, res) => {
+    // console.log('confirmEmployer')
+    return res.status(200).json(res.locals.isVerified)
+  }
+);
 
 app.post('/api/survey', employeeController.createResponse, (req, res) => {
   res.status(200).json('http://localhost:3000/submitted.html'); // send result string to be displayed on submitted.html
