@@ -31,9 +31,10 @@ employeeController.createResponse = async (req, res, next) => {
     'INSERT INTO survey(week, employee_id, question_0, question_1, question_2, question_3) VALUES ($1, $2, $3, $4, $5, $6);';
   const findResponse = `SELECT * FROM survey WHERE week=($1) AND employee_id=($2);`;
   try {
-    // check if employee_id and week already exist
+    //check if employee_id and week already exist
     const findResult = await db.query(findResponse, findArray);
-    if (findResult.rows.length === 0) {
+    if (findResult.rows.length > 0) {  // fixed line 
+      console.log(findResult.row)
       console.log('Submission already exists');
       next();
     } else {
@@ -64,6 +65,20 @@ employeeController.getGraph = async (req, res, next) => {
     baseError.log = `Error caught in getGraph: ${err}`;
     baseError.message.err = `Could not retrieve data`;
     return next(baseError);
+  }
+};
+
+employeeController.resetTable = async (req, res, next) => {
+  const reset = `BEGIN;
+  TRUNCATE TABLE survey RESTART IDENTITY;
+  COMMIT;`;
+  try {
+    await db.query(reset);
+    next();
+  } catch (err) {
+    baseError.log = `Error in employeeController.resetTable: ${err}`;
+    baseError.message.err = 'Could not reset the database table.';
+    next(baseError);
   }
 };
 
