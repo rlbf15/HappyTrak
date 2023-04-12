@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import ConfirmEmployer from './ConfirmEmployer';
+import '../style.css'
 
 export default function Dashboard() {
   const [type, setType] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [createToken, setCreateToken] = useState('abc');
+  const [inputToken, setInputToken] = useState('');
+  const [employeeToken, setEmployeeToken] = useState('abc');
+  const [employerToken, setEmployerToken] = useState('zzz');
+
   const navigate = useNavigate();
 
   //this is to fetch a create account password for a new employee to create an account. otherwise, anyone can create an account to log into 
   useEffect(() => {
-    fetch('/getToken', {
+    fetch('/postToken', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -18,17 +23,17 @@ export default function Dashboard() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setCreateToken(data.token);
+        setEmployeeToken(data.employeeToken);
+        setEmployerToken(data.employerToken);
       })
       .catch((err) => {
         console.log({ err: 'Error authenticating user:' + err });
       });
   }, []);
-  
+
 
   function registerUser(event) {
-    if (event.target.createToken.value === createToken) {
-      event.preventDefault();
+    event.preventDefault();
     fetch('/register', {
       method: 'POST',
       headers: {
@@ -41,19 +46,19 @@ export default function Dashboard() {
       }),
     })
       .then(() => {
-        if (type === 'employee') {
-          navigate('/survey');
+        if (type === 'employee' && employeeToken === inputToken) {
+          navigate('/Survey');
+        } else if (type === 'employer' && employerToken === inputToken) {
+          navigate('/ConfirmEmployer');
         } else {
-          navigate('/confirmEmployer');
+          console.log('please enter the corret token');
         }
       })
       .catch((err) => {
         console.log({ err: 'Error authenticating user' });
       });
-    } else {
-      console.log('You don\'t work here!');
-    }
-    
+
+
   }
 
 
@@ -71,6 +76,8 @@ export default function Dashboard() {
       }),
     })
       .then((response) => {
+        console.log(response)
+        console.log('inside authenticate user response')
         if (response.ok) {
           if (type === 'employee') {
             navigate('/survey');
@@ -95,21 +102,21 @@ export default function Dashboard() {
       </section>
       <form className='create-login' onSubmit={registerUser}>
         {/* form content */}
-        <label value='createToken'>Enter Create Account Token<br/> </label>
+        <label value='inputToken'>Enter Token<br /> </label>
         <input
-          id='createToken'
-          name='createToken'
+          id='inputToken'
+          name='inputToken'
           type='text'
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setInputToken(e.target.value)}
         />
-        <label value='username'><br/>Create username<br/></label>
+        <label value='username'><br />Create username<br /></label>
         <input
           id='username'
           name='username'
           type='text'
           onChange={(e) => setUsername(e.target.value)}
         />
-        <label value='password'><br/>Create password<br/></label>
+        <label value='password'><br />Create password<br /></label>
         <input
           id='password'
           name='password'
@@ -143,44 +150,25 @@ export default function Dashboard() {
 
       <form className='create-login' onSubmit={authenticateUser}>
         {/* form content */}
-        <label value='username'><br/>Enter username<br/></label>
+        <label value='username'><br />Enter username<br /></label>
         <input
           id='username'
           name='username'
           type='text'
           onChange={(e) => setUsername(e.target.value)}
         />
-        <label value='password'><br/>Enter password<br/></label>
+        <label value='password'><br />Enter password<br /></label>
         <input
           id='password'
           name='password'
           type='text'
           onChange={(e) => setPassword(e.target.value)}
         />
-        <div>
-          <label>
-            Employee
-            <input
-              type='radio'
-              name='type'
-              value='employee'
-              onChange={(e) => setType(e.target.value)}
-              checked={type === 'employee'}
-            />
-          </label>
-          <label>
-            Employer
-            <input
-              type='radio'
-              name='type'
-              value='employer'
-              onChange={(e) => setType(e.target.value)}
-              checked={type === 'employer'}
-            />
-          </label>
-        </div>
+
         <input className='submit' type='submit' value='Login' />
       </form>
+      {/* <ConfirmEmployer username={username} password={password}></ConfirmEmployer> */}
+
     </div>
   );
 }
@@ -188,10 +176,7 @@ export default function Dashboard() {
 
 
 
-{/* <h4><i>Select your role:</i></h4> 
-<Link to='/survey' style={{ textDecoration: 'none' }}> 
-<button id="emp_button">EMPLOYEE</button> 
-</Link><br/>
-<Link to='/confirmEmployer' style={{ textDecoration: 'none' }}> 
-<button id="emp_button" >EMPLOYER</button> 
-</Link>  */}
+// <Routes>
+// <Route path='/survey' element={<Survey/> }/>
+// <Route path='/confirmEmployer'  /> } /> 
+// </Routes>
