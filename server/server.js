@@ -4,6 +4,7 @@ const dataFlowController = require('./dataFlowController')
 const app = express();
 const PORT = 3000;
 const mongoose = require('mongoose');
+const seedDatabase = require('./seedDB')
 
 
 
@@ -20,6 +21,9 @@ const dbConnect = async () =>{
   }
 
   dbConnect();
+
+  //seed databse - delete when seeding complete
+  // seedDatabase(1,5); 
 
 app.use(express.json());
 
