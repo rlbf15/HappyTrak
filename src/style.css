@@ -1,69 +1,76 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 body {
-    background-color: hsl(240, 84%, 12%);
+  background-color: hsl(240, 84%, 12%);
 }
 
 button {
-    padding: 15px 30px;
-    background-color: white;
-    color: hsl(240, 84%, 12%);
-    width: 30%;
-    margin: auto; 
-    display: flex;
-    justify-content: center;
-    border:none;
+  padding: 15px 30px;
+  background-color: white;
+  color: hsl(240, 84%, 12%);
+  width: 30%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  border: none;
 }
 
 
 /* Dashboard */
 
 #dashboardMessage {
-  color: white; 
+  color: white;
   display: grid;
   justify-content: center;
 }
 
 #dashboardMessage h1 {
-margin:auto;
-margin-bottom: 5%;
-}
-#dashboardMessage h2 {
-margin:auto;
-margin-bottom: 20%;
-}
-#dashboardMessage h4 {
-margin:auto;
-margin-bottom: 5%;
+  margin: auto;
+  margin-bottom: 5%;
 }
 
-#emp_button{
-border-radius: 8px;
-border: none;
-box-shadow: 0 0 60px #f8fbfde3;
-cursor: pointer;
+#dashboardMessage h2 {
+  margin: auto;
+  margin-bottom: 20%;
+}
+
+#dashboardMessage h4 {
+  margin: auto;
+  margin-bottom: 5%;
+}
+
+#emp_button {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 0 60px #f8fbfde3;
+  cursor: pointer;
 
 }
 
 .mainButtons {
-  margin-top: 20%; 
+  margin-top: 5%;
 }
 
 .weekEmployeeId {
   display: flex;
   justify-content: center;
-  margin:auto;
+  margin: auto;
   left: 0;
   right: 0;
 }
 
-#survey h3{
-    color: white;
-    display: grid;
-    margin-bottom: -5%;
-    justify-content: center;
+#survey h3 {
+  color: white;
+  display: grid;
+  margin-bottom: -5%;
+  justify-content: center;
 }
 
 #survey {
-    margin-top: 18%;
+  margin-top: 10%;
 }
 
 #surveyDescription {
@@ -72,9 +79,9 @@ cursor: pointer;
 
 #surveySubmitButton {
   position: absolute;
-  background-color:#ffffffc6;
-  color:hsl(240, 84%, 12%);
-  border:none;
+  background-color: #ffffffc6;
+  color: hsl(240, 84%, 12%);
+  border: none;
   width: 15%;
   height: 30px;
   left: 0;
@@ -86,23 +93,27 @@ cursor: pointer;
 }
 
 form {
-  font-family:sans-serif; 
+  font-family: sans-serif;
   background-color: #fefefeeb;
-  font-size:16px;
+  font-size: 16px;
   /* display: grid; */
   justify-content: center;
-  margin:auto;
-  margin-top:7%;
-  width: 40%;
+  margin: auto;
+  margin-top: 1%;
+  width: 15%;
   padding: 50px;
   border-radius: 20px;
   box-shadow: 0 0 70px #f8fbfdb4;
 }
 
-#employeeId{
+#survey-box {
+  width: 50%;
+}
+
+#employeeId {
   /* display:flex; */
   width: max-content;
-  display:flex;
+  display: flex;
   align-items: space-around;
   /* margin-right: 0%; */
   margin-left: 0%;
@@ -110,7 +121,7 @@ form {
   /* justify-content: center; */
 }
 
-.week{
+.week {
   margin: auto;
   margin-right: 0%;
 }
@@ -118,24 +129,34 @@ form {
 #confirmEmployer {
   color: white;
   border: solid;
-  border-color: white; 
+  border-color: white;
   width: 500px;
   border-radius: 30px;
-  margin:20% auto;
+  margin: 20% auto;
   text-align: center;
   padding-bottom: 20px;
   box-shadow: 0 0 70px #f8fbfdc3;
 
 }
 
-#confirmSubmit{
-  position:absolute;
+#confirmSubmit {
+  position: absolute;
   left: 0;
   right: 0;
-  padding: 0 10 -3 10 ;
-  margin-top:40px;
+  padding: 0 10 -3 10;
+  margin-top: 40px;
   height: 40px;
   width: 80px;
-  text-align:center;
+  text-align: center;
   text-decoration: none;
+}
+
+.sign {
+  background-color: rgba(0, 0, 0, 0.18);
+  color: white;
+}
+
+.create-login {
+  background-color: rgba(0, 0, 0, 0.18);
+  color: white;
 }
