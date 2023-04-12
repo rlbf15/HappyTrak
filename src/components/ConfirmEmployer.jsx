@@ -6,7 +6,7 @@ const ConfirmEmployer = () => {
 
     return (
         <div id= 'confirmEmployer'>
-            <h3>Please enter your Employer ID:</h3>
+            <h3>Enter your Employer ID:</h3>
         <input type='text' placeholder='Employer ID' />
         <Link to='/graph'>
           <button /*onClick={handleClick}*/ id="confirmSubmit">SUMBIT</button>

@@ -3,10 +3,11 @@ const path = require('path');
 const fs = require('fs');
 const employeeController = require('./employeeController.js');
 const app = express();
+const cors = require('cors'); ///
 const PORT = 3000;
 
 app.use(express.json());
-
+app.use(cors()) ///
 app.use(express.static(path.resolve(__dirname, '../src')));
 
 app.post('/api/survey', employeeController.createResponse, (req, res) => {
@@ -19,6 +20,10 @@ app.get('/api/graph', employeeController.getGraph, (req, res) => {
 
 app.get('/api/reset', employeeController.resetAndPopulateData, (req, res) => {
   res.status(200).send('Survey data reset and repopulated');
+});
+
+app.post('/api/reset-table', employeeController.resetTable, (req, res) => {
+  res.status(200).send('Table reset successfully.');
 });
 
 app.use('/api', (req, res) => {
