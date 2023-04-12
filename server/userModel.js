@@ -19,12 +19,18 @@ userSchema.pre('save', function(next) {
   //generate a salt
   bcrypt.genSalt(Salt_Work_Factor, (err, salt) => {
     if (err) {
-      return next(err);
+      return next({
+          log: `Error in bcrypt.genSalt: ${err}`,
+          message: { err: 'Error occured in bcrypt.genSalt'}
+      });
     } 
     // hash the password using our new salt
     bcrypt.hash(this.password, salt, (err, hash) => {
       if (err) {
-        return next(err);
+        return next({
+          log: `Error in bcrypt.hash: ${err}`,
+          message: { err: 'Error occured in bcrypt.hash'}
+        });
       }
       // override the original password with the hashed one
       this.password = hash;
