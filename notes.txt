@@ -152,3 +152,9 @@ SELECT
    COUNT(*) 
 FROM 
    table_name;
+
+
+
+
+   ///////
+   SURVEY line 44 - matching rating with questions

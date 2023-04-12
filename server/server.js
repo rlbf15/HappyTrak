@@ -4,11 +4,12 @@ const fs = require('fs');
 const employeeController = require('./employeeController.js');
 const employerController = require('./controllers/employerController');
 const app = express();
+const cors = require('cors'); ///
 const PORT = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
+app.use(cors()) ///
 app.use(express.static(path.resolve(__dirname, '../src')));
 
 app.post('/api/createEmployer',
@@ -38,6 +39,10 @@ app.get('/api/graph', employeeController.getGraph, (req, res) => {
 
 app.get('/api/reset', employeeController.resetAndPopulateData, (req, res) => {
   res.status(200).send('Survey data reset and repopulated');
+});
+
+app.post('/api/reset-table', employeeController.resetTable, (req, res) => {
+  res.status(200).send('Table reset successfully.');
 });
 
 app.use('/api', (req, res) => {
