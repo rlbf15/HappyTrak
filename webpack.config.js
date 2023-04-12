@@ -3,6 +3,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js', //where bundling starts
+
   output: {
     // eslint-disable-next-line no-undef
     path: path.join(__dirname, '/dist'), //where bundle go
@@ -10,7 +11,7 @@ module.exports = {
   },
 
   // eslint-disable-next-line no-undef
-  mode: process.env.NODE_ENV,
+  mode: 'development',
 
   plugins: [
     new HTMLWebpackPlugin({

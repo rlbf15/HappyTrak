@@ -1,29 +1,64 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
-const employeeController = require('./employeeController.js');
+const dataFlowController = require('./dataFlowController');
+const credentialsController = require('./credentialsController');
 const app = express();
 const PORT = 3000;
+const mongoose = require('mongoose');
+const seedDatabase = require('./seedDB')
+const cors = require('cors');
 
+
+
+
+const dbConnect = async () =>{
+  try {
+    await mongoose.connect('mongodb+srv://velocirabbit:velocirabbit@cluster0.ose86oe.mongodb.net/?retryWrites=true&w=majority', {dbName: 'happytracker'})
+
+    console.log('connected to db')
+  }catch(error) {
+    console.log(error)
+  }
+  }
+
+  // dbConnect();
+
+
+dbConnect();
+app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
 
 app.use(express.static(path.resolve(__dirname, '../src')));
 
-app.post('/api/survey', employeeController.createResponse, (req, res) => {
-  res.status(200).json('http://localhost:3000/submitted.html'); // send result string to be displayed on submitted.html
-});
+//login route
+app.post('/login', credentialsController.verifyUser, (req, res) => {
+  res.status(200).json({"message": "user logged in"});
+})
 
-app.get('/api/graph', employeeController.getGraph, (req, res) => {
-  res.status(200).json(res.locals.graph);
-});
+//register route
+app.post('/register', credentialsController.createUser, (req, res) => {
+  res.status(200).json({"message": "user registered"});
+})
 
-app.get('/api/reset', employeeController.resetAndPopulateData, (req, res) => {
-  res.status(200).send('Survey data reset and repopulated');
-});
+//save survery to DB
+app.post('/sendSurvey', dataFlowController.saveSurvey , (req, res) => {
+  res.status(200).json('data saved')
+})
 
-app.use('/api', (req, res) => {
-  res.status(404).send('Cannot get page');
-});
+
+//get survey data from db
+app.get('/getSurvey', dataFlowController.getSurvey ,(req, res) => {
+  res.json(res.locals.surveys)
+})
+
+//get notification updates
+app.get('/notifications', (req, res) => {
+
+})
+
 
 app.use((err, req, res, next) => {
   const defaultErr = {
