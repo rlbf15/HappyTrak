@@ -5,38 +5,70 @@ import ConfirmEmployer from './ConfirmEmployer.jsx'
 import Dashboard from './Dashboard.jsx'
 
 // import Chart from "chart.js/auto";
-import { useState } from "react";
-import { surveyData } from "../utils/Data.js";
+import { useState , useEffect} from "react"; // ADDED USE EFFECT
+//import { surveyData } from "../utils/Data.js";
 import LineChart from './LineChart.jsx';
 
 import '../style.css'
 
-
-
 const App = () => {
+  const [surveyData, setSurveyData] = useState([]);
+  const [chartData, setChartData] = useState({});
 
-	const [chartData, setChartData] = useState({
-    labels: surveyData.map((data) => data.week_id),
-    datasets: [
-      {
-        label: "Cultural Fit",
-        data: surveyData.map((data) =>data.question_0_total)
-      },
-      {
-        label: "Manager Relationships",
-        data: surveyData.map((data) => data.question_1_total)
-      },
-      {
-        label: "Employee Validation",
-        data: surveyData.map((data) => data.question_2_total)
-      },
-      {
-        label: "Coworker Relationships",
-        data: surveyData.map((data) => data.question_3_total)
-      },
-    ]
-  })
-    console.log('this is the chart', chartData); 
+	// const [chartData, setChartData] = useState({
+  //   labels: surveyData.map((data) => data.week_id),
+  //   datasets: [
+  //     {
+  //       label: "Cultural Fit",
+  //       data: surveyData.map((data) =>data.question_0_total)
+  //     },
+  //     {
+  //       label: "Manager Relationships",
+  //       data: surveyData.map((data) => data.question_1_total)
+  //     },
+  //     {
+  //       label: "Employee Validation",
+  //       data: surveyData.map((data) => data.question_2_total)
+  //     },
+  //     {
+  //       label: "Coworker Relationships",
+  //       data: surveyData.map((data) => data.question_3_total)
+  //     },
+  //   ]
+  // })
+
+  useEffect(() => {
+    // FETCH INFO FROM THE API GRAPH
+    fetch("/api/graph")
+      .then((response) => response.json()) //response as json
+      .then((data) => {
+        console.log("data",data)
+        setSurveyData(data);
+        setChartData({
+          // sample was missing the mapping of the data in individudal items
+          labels: data.map((item) => item.week_id),
+          datasets: [
+            {
+              label: "Cultural Fit",
+              data: data.map((item) => item.question_0_total),
+            },
+            {
+              label: "Manager Relationships",
+              data: data.map((item) => item.question_1_total),
+            },
+            {
+              label: "Employee Validation",
+              data: data.map((item) => item.question_2_total),
+            },
+            {
+              label: "Coworker Relationships",
+              data: data.map((item) => item.question_3_total),
+            },
+          ],
+        });
+      })
+      .catch((error) => console.error("Error fetching survey data:", error));
+  }, []); // empty array only calls it one time
 
     return (
         
@@ -51,13 +83,8 @@ const App = () => {
 )
 }
 
-
-
 export default App;
   
-
-
-
 
 /// ATTEMPT TO PLUG DATA FROM DATABASE TO CHART 
 

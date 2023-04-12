@@ -41,6 +41,7 @@ const Survey = () => {
   }
 
   // converting user input values (rating) into schema format that DB is expecting
+  // NOT SURE HOW IT WORKS SEEMS LIKE QUESTIONS ARE MATCHING THE RATING
   const data = {}
   for (let i = 0; i < rating.length; i++) {
     data[`question_${i}`] = Number(rating[i]);
