@@ -1,15 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 body {
-    background-color: hsl(240, 84%, 12%);
+    background-color: hsl(240, 3%, 16%);
+    font-family: 'Roboto';
 }
 
 button {
     padding: 15px 30px;
     background-color: white;
-    color: hsl(240, 84%, 12%);
+    color: hsl(240, 3%, 16%);
     width: 30%;
     margin: auto; 
     display: flex;
     justify-content: center;
+    align-items: center;
     border:none;
 }
 
@@ -20,6 +24,7 @@ button {
   color: white; 
   display: grid;
   justify-content: center;
+  align-items: center;
 }
 
 #dashboardMessage h1 {
@@ -38,7 +43,7 @@ margin-bottom: 5%;
 #emp_button{
 border-radius: 8px;
 border: none;
-box-shadow: 0 0 60px #f8fbfde3;
+box-shadow: 0 0 10px #c1c2c3e3;
 cursor: pointer;
 
 }
@@ -60,6 +65,7 @@ cursor: pointer;
     display: grid;
     margin-bottom: -5%;
     justify-content: center;
+    align-items: center;
 }
 
 #survey {
@@ -72,7 +78,7 @@ cursor: pointer;
 
 #surveySubmitButton {
   position: absolute;
-  background-color:#ffffffc6;
+  background-color:#c1c2c3e3;
   color:hsl(240, 84%, 12%);
   border:none;
   width: 15%;
@@ -86,11 +92,12 @@ cursor: pointer;
 }
 
 form {
-  font-family:sans-serif; 
+  font-family: 'Roboto'; 
   background-color: #fefefeeb;
   font-size:16px;
   /* display: grid; */
   justify-content: center;
+  align-items: center;
   margin:auto;
   margin-top:7%;
   width: 40%;

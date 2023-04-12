@@ -88,7 +88,7 @@ const Survey = () => {
   return (
 
     <div id='survey'>
-    <h3><i>Please complete the following survey:</i></h3>
+    <h3>Please complete the following survey:</h3>
       <form style={styles} onSubmit={handleSubmit}>
         
       <div className="weekEmployeeId">
@@ -99,7 +99,7 @@ const Survey = () => {
         <option value="3">3</option>
         <option value="4">4</option>
       </select><br /><br />
-      <input type="text" id="employeeId" placeholder="Please enter Employee ID" onChange={updateEmployeeID} />
+      <input type="text" id="employeeId" placeholder="Enter Employee ID" onChange={updateEmployeeID} />
       </div>  
 
       <p id="SurveyDescription"><b>Please select a rating to answer each question, where 1 is the lowest and 5 is the highest.</b></p>
