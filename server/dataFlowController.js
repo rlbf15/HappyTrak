@@ -6,8 +6,8 @@ const dataFlowController = {
  getSurvey: async (req, res, next) => {
 
   try{
-    const surveys = await Survey.find()
-    res.locals.surveys = surveys
+    const surveys = await Survey.find();
+    res.locals.surveys = surveys;
     return next()
   } catch (error) {
     return next({log: 'There was an error in getSurvey middleware'})

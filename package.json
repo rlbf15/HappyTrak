@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/server.js",
-    "dev": "webpack serve",
+    "start": "export NODE_ENV=production && nodemon server/server.js",
+    "dev": "export NODE_ENV=development && webpack serve",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

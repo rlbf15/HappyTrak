@@ -7,7 +7,8 @@ const questions = [
   'Do you feel welcome at the company?',
   'Does your manager value your feedback?',
   'Do you feel appreciated and respected at work?',
-  'Do you feel connected to your coworkers?'
+  'Do you feel connected to your coworkers?',
+  'What is your favorite number between 1 and 5?'
 ]
 
 
