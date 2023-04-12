@@ -7,12 +7,12 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
   const surveySchema = new Schema({
-    week: Number,
-    q1: Number,
-    q2: Number,
-    q3: Number,
-    q4: Number,
-    q5: Number
+    week: { type: Number, required: true },
+    q1: { type: Number, required: true },
+    q2: { type: Number, required: true },
+    q3: { type: Number, required: true },
+    q4: { type: Number, required: true },
+    q5: { type: Number, required: true },
   })
 
 

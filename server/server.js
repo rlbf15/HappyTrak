@@ -1,13 +1,15 @@
 const express = require('express');
 const path = require('path');
-const dataFlowController = require('./dataFlowController')
+const dataFlowController = require('./dataFlowController');
+const credentialsController = require('./credentialsController');
 const app = express();
 const PORT = 3000;
 const mongoose = require('mongoose');
+const seedDatabase = require('./seedDB')
+const cors = require('cors');
 
 
 
-// mongodb+srv://velocirabbit:velocirabbit@cluster0.ose86oe.mongodb.net/?retryWrites=true&w=majority
 
 const dbConnect = async () => {
   try {
@@ -19,20 +21,26 @@ const dbConnect = async () => {
   }
 }
 
-dbConnect();
+  // dbConnect();
 
+
+dbConnect();
+app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
 
 app.use(express.static(path.resolve(__dirname, '../src')));
 
 //login route
-app.post('/login', (req, res) => {
-
+app.post('/login', credentialsController.verifyUser, (req, res) => {
+  res.status(200).json({"message": "user logged in"});
 })
 
 //register route
-app.post('/register', (req, res) => {
-
+app.post('/register', credentialsController.createUser, (req, res) => {
+  res.status(200).json({"message": "user registered"});
 })
 
 //save survery to DB
@@ -42,9 +50,9 @@ app.post('/sendSurvey', dataFlowController.saveSurvey, (req, res) => {
 
 
 //get survey data from db
-app.get('/getSurvey', dataFlowController.getSurvey, (req, res) => {
-
-  res.json(res.locals.surveys)
+app.get('/getSurvey', dataFlowController.getSurvey ,(req, res) => {
+  const surveyData = res.locals.surveys;
+  res.status(200).send(surveyData);
 })
 
 //get notification updates
