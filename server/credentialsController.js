@@ -8,20 +8,31 @@ const credentialsController = {};
 credentialsController.createUser = async (req, res, next) => {
     const { username, password, type } = req.body;    
     try {
+        // check if username already exists
+        const userExist = await User.findOne({ username });
+        if (userExist) {
+            return next({
+                log: `Error: username already exists.`,
+                message: 'Username already exists.'
+            })
+        }
         const newUser = new User({username:username, password:password, type:type})
-        const savedUser = await newUser.save({username, password, type}) 
+        await newUser.save({username, password, type}) 
       return next()
     }catch (error) {
       return next({message: 'Error occured in credentialsController.createUser.'})
     }
 }
 
+
+
+
 // Verify that the user exists in the database and that the password is correct
 credentialsController.verifyUser = (req, res, next) => {
-    const { username, password, type } = req.body;
+    const { username, password } = req.body;
   
     // find the user in the database with the corresponding type
-    User.findOne({ username, type })
+    User.findOne({ username })
       .then(user => {
         if (!user) {
           // If the user doesn't exist, save res.locals.isAuthenticated as false
@@ -47,7 +58,7 @@ credentialsController.verifyUser = (req, res, next) => {
             // If the user's credentials are valid, store their information in the request object and call the next middleware
             res.locals.isAuthenticated = true;
             // sending back the user object so we can access it in the frontend
-            res.locals.user = user.username;
+            res.locals.type = {type: user.type};
             return next();
           })
           .catch(err => {
