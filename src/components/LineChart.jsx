@@ -4,31 +4,26 @@ import { Chart } from 'chart.js/auto'
 
 const LineChart = () => {
 
-// const [chartData, setChartData] = useState({
-//     labels: surveyData.map((data) => data.week_id),
-//     datasets: [
-//       {
-//         label: "Cultural Fit",
-//         data: surveyData.map((data) =>data.question_0_total)
-//       },
-//       {
-//         label: "Manager Relationships",
-//         data: surveyData.map((data) => data.question_1_total)
-//       },
-//       {
-//         label: "Employee Validation",
-//         data: surveyData.map((data) => data.question_2_total)
-//       },
-//       {
-//         label: "Coworker Relationships",
-//         data: surveyData.map((data) => data.question_3_total)
-//       },
-//     ]
-//   })
-
     const [chartData, setChartData] = useState([]);
     const [haveData, setHaveData] = useState(false);
     
+    const options = {
+        scales: {
+            yAxis: {
+                min: 0,
+                max: 5,
+            },
+        },
+    }
+
+    const questions = {
+    q1: 'Do you feel welcome at the company?',
+    q2: 'Does your manager value your feedback?',
+    q3: 'Do you feel appreciated and respected at work?',
+    q4: 'Do you feel connected to your coworkers?',
+    q5: 'What is your favorite number between 1 and 5?',
+    }
+
     useEffect(() => {
         fetch('http://localhost:3000/getSurvey', {
             method: 'GET',
@@ -36,6 +31,7 @@ const LineChart = () => {
         })
         .then(data => data.json())
         .then(response => {
+            //parses data from server into arrays grouped by week
             const parsedData = {};
             for (let data of response) {
                 if (!parsedData[data.week]) {
@@ -53,6 +49,7 @@ const LineChart = () => {
                     }
                 }
             }
+            //averages question value arrays and puts them into an object containing the associated week id, and pushes those objects into an array
             const graphData = [];
             for (let week of Object.keys(parsedData)) {
                 const weekData = {};
@@ -65,19 +62,20 @@ const LineChart = () => {
                 };
             }
             //console.log(graphData);
+            //parses graphData into a form that can be utilized by react-chartjs-2
             const finalData = {
-                labels: graphData.map((data) => data.week_id),
+                labels: graphData.map((data) => `Week ${data.week_id}`),
                 datasets: []
             };
             for (let key of Object.keys(graphData[0])) {
                 if (key !== 'week_id') {
                     finalData.datasets.push({
-                        label: key,
+                        label: questions[key],
                         data: graphData.map((data) => data[key])
                     })
                 }
             }
-            console.log(finalData);
+            //console.log(finalData);
             setChartData(finalData);
             setHaveData(true);
         })
@@ -87,7 +85,7 @@ const LineChart = () => {
         return <div>Loading...</div>
     }
     else {
-        return <Line data = {chartData}/>
+        return <Line data={chartData} options={options}/>
     }
 }
 
