@@ -2,17 +2,9 @@ const mongoose = require('mongoose');
 const dataFlowController = require('./dataFlowController')
 const Survey = require('./dataModel')
 
-// const MONGO_URI = 'mongodb+srv://velocirabbit:velocirabbit@cluster0.ose86oe.mongodb.net/?retryWrites=true&w=majority';
-// mongoose.connect(MONGO_URI, {
-//   // options for the connect method to parse the URI
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   // sets the name of the DB that our collections are part of
-//   dbName: 'happytracker'
-// })
-//   .then(() => console.log('Connected to Mongo DB. You can now seed happytracker surveys collection'))
-//   .catch(err => console.log(err));
-
+// add to server js after db is connected
+  //seed databse - delete when seeding complete
+  // seedDatabase(1,5); 
 
 async function seedSurveys(surveyObj){
   const { week, q1, q2, q3, q4, q5 } = surveyObj;

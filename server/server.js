@@ -22,8 +22,6 @@ const dbConnect = async () =>{
 
   dbConnect();
 
-  //seed databse - delete when seeding complete
-  // seedDatabase(1,5); 
 
 app.use(express.json());
 
