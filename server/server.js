@@ -43,8 +43,8 @@ app.post('/sendSurvey', dataFlowController.saveSurvey , (req, res) => {
 
 //get survey data from db
 app.get('/getSurvey', dataFlowController.getSurvey ,(req, res) => {
-  console.log('get')
-  res.json('getSurvey')
+
+  res.json(res.locals.surveys)
 })
 
 //get notification updates
