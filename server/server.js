@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
-const dataFlowController = require('./dataFlowController')
+const dataFlowController = require('./dataFlowController');
+const credentialsController = require('./credentialsController');
 const app = express();
 const PORT = 3000;
 const mongoose = require('mongoose');
@@ -26,13 +27,13 @@ app.use(express.json());
 app.use(express.static(path.resolve(__dirname, '../src')));
 
 //login route
-app.post('/login',(req, res) => {
-
+app.post('/login', credentialsController.verifyUser, (req, res) => {
+  res.status(200).json({"message": "user logged in"});
 })
 
 //register route
-app.post('/register',(req, res) => {
-
+app.post('/register', credentialsController.createUser, (req, res) => {
+  res.status(200).json({"message": "user registered"});
 })
 
 //save survery to DB

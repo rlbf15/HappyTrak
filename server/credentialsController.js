@@ -1,22 +1,19 @@
 //this is space for John's auth middleware
-const User = require('../server/userModel.js');
+const User = require('./userModel');
+const bcrypt = require('bcrypt');
 
 const credentialsController = {};
 
 // Create a new user and add them to the database
-credentialsController.createUser = (req, res, next) => {
-    const { username, password, type } = req.body;
-
-    User.createUser(username, password, type, (err, user) => {
-        if (err) {
-            return next({
-                log: `Error in credentialsController.createUser: ${err}`,
-                message: { err: 'Error occured in credentialsController.createUser.'},
-            });
-        }
-        res.locals.user = user; // storing the user in res.locals just incase we need it later
-        return next();
-    });
+credentialsController.createUser = async (req, res, next) => {
+    const { username, password, type } = req.body;    
+    try {
+        const newUser = new User({username:username, password:password, type:type})
+        const savedUser = await newUser.save({username, password, type}) 
+      return next()
+    }catch (error) {
+      return next({message: 'Error occured in credentialsController.createUser.'})
+    }
 }
 
 // Verify that the user exists in the database and that the password is correct
@@ -49,20 +46,23 @@ credentialsController.verifyUser = (req, res, next) => {
   
             // If the user's credentials are valid, store their information in the request object and call the next middleware
             res.locals.isAuthenticated = true;
+            // sending back the user object so we can access it in the frontend
+            res.locals.user = user.username;
             return next();
           })
           .catch(err => {
             return next({
               log: `Error in credentialsController.verifyUser: ${err}`,
-              message: { err: 'Error with bcrypt Compare' },
+              message: { err: 'Username or password is incorrect' },
             });
           });
       })
       .catch(err => {
         return next({
           log: `Error in credentialsController.verifyUser: ${err}`,
-          message: { err: 'Error with User.findOne' },
+          message: { err: 'Username or password is incorrect' },
         });
       });
   };
   
+module.exports = credentialsController;
