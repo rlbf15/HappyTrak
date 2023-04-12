@@ -4,10 +4,14 @@ const mongoose = require('mongoose')
 
 const dataFlowController = {
  getSurvey: async (req, res, next) => {
-    // //get survey from db
-    // const surveys = await Survey.find()
-    // //does survey come back as an array of object
-    // res.locals.surveys = [ surveys ]
+
+  try{
+    const surveys = await Survey.find()
+    res.locals.surveys = surveys
+    return next()
+  } catch (error) {
+    return next({log: 'There was an error in getSurvey middleware'})
+  }
  },
 
  saveSurvey: async (req, res, next) => {
@@ -17,13 +21,11 @@ const dataFlowController = {
   try {
     //create new document
     const newSurvey = new Survey({ q1, q2, q3, q4, q5 })
-
     const savedSurvey = await newSurvey.save()
-    console.log(savedSurvey)
+
     return next()
   } catch(error) {
       return next({
-
         err: error
       })
   }
