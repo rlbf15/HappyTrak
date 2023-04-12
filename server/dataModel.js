@@ -14,3 +14,7 @@ module.exports = {
     return pool.query(text, params, callback);
   },
 };
+
+
+// create employee table command
+
