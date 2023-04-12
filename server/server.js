@@ -12,15 +12,15 @@ const cors = require('cors');
 
 
 
-const dbConnect = async () =>{
+const dbConnect = async () => {
   try {
-    await mongoose.connect('mongodb+srv://velocirabbit:velocirabbit@cluster0.ose86oe.mongodb.net/?retryWrites=true&w=majority', {dbName: 'happytracker'})
+    await mongoose.connect('mongodb+srv://velocirabbit:velocirabbit@cluster0.ose86oe.mongodb.net/?retryWrites=true&w=majority', { dbName: 'happytracker' })
 
     console.log('connected to db')
-  }catch(error) {
+  } catch (error) {
     console.log(error)
   }
-  }
+}
 
   // dbConnect();
 
@@ -60,7 +60,7 @@ app.get('/getToken', tokenController.getToken, (req, res) => {
 })
 
 //save survery to DB
-app.post('/sendSurvey', dataFlowController.saveSurvey , (req, res) => {
+app.post('/sendSurvey', dataFlowController.saveSurvey, (req, res) => {
   res.status(200).json('data saved')
 })
 

@@ -11,6 +11,10 @@ module.exports = {
   },
 
   // eslint-disable-next-line no-undef
+<<<<<<< HEAD
+
+=======
+>>>>>>> dev
   mode: 'development',
 
   plugins: [

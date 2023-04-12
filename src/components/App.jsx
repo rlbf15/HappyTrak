@@ -15,6 +15,7 @@ import '../style.css'
 
 const App = () => {
 
+
 	const [chartData, setChartData] = useState({
     labels: surveyData.map((data) => data.week_id),
     datasets: [
@@ -45,7 +46,7 @@ const App = () => {
         <Route path='/survey' element={<Survey/> }/>
 				<Route path='/graph' element={<LineChart />}/>
 				<Route path='/' element={ <Dashboard /> } />
-        <Route path='/confirmEmployer' element={<ConfirmEmployer /> } />
+        <Route path='/confirmEmployer' element={<ConfirmEmployer username={'Akeem'}/> } />
 			</Routes>
 		</div>
 )
