@@ -15,7 +15,7 @@ export default function Dashboard() {
 
   //this is to fetch a create account password for a new employee to create an account. otherwise, anyone can create an account to log into 
   useEffect(() => {
-    fetch('/postToken', {
+    fetch('http://localhost:3000/getToken', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -34,18 +34,17 @@ export default function Dashboard() {
 
   function registerUser(event) {
     event.preventDefault();
-    fetch('/register', {
+    fetch('http://localhost:3000/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         username: username,
-        password: password,
-        type: type,
+        password: password
       }),
     })
-      .then(() => {
+      .then((response) => {
         if (type === 'employee' && employeeToken === inputToken) {
           navigate('/Survey');
         } else if (type === 'employer' && employerToken === inputToken) {
@@ -57,14 +56,12 @@ export default function Dashboard() {
       .catch((err) => {
         console.log({ err: 'Error authenticating user' });
       });
-
-
   }
 
 
   function authenticateUser(event) {
     event.preventDefault();
-    fetch('/login', {
+    fetch('http://localhost:3000/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -72,14 +69,14 @@ export default function Dashboard() {
       body: JSON.stringify({
         username,
         password,
-        type,
+        type
       }),
     })
       .then((response) => {
         console.log(response)
         console.log('inside authenticate user response')
         if (response.ok) {
-          if (type === 'employee') {
+          if (response.type === 'employee') {
             navigate('/survey');
           } else {
             navigate('/confirmEmployer');
@@ -167,8 +164,9 @@ export default function Dashboard() {
 
         <input className='submit' type='submit' value='Login' />
       </form>
-      {/* <ConfirmEmployer username={username} password={password}></ConfirmEmployer> */}
-
+      {/* <ConfirmEmployer username={'Akeem'}/> */}
+     
+     
     </div>
   );
 }
