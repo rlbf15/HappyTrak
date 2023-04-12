@@ -7,8 +7,9 @@ const LineChart = () => {
     const [chartData, setChartData] = useState({});
     
     useEffect(() => {
-        fetch('/getSurvey', {
+        fetch('http://localhost:3000/getSurvey', {
             method: 'GET',
+            headers: {'Access-Control-Allow-Origin': '*'}
         })
         .then(data => data.json())
         .then(response => {

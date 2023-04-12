@@ -33,6 +33,6 @@ userSchema.pre('save', function(next) {
   });
 });
 
-  const User = mongoose.model('users', Survey);
+  const User = mongoose.model('users', userSchema);
 
   module.exports = User;
