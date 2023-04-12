@@ -3,6 +3,23 @@ const path = require('path');
 const dataFlowController = require('./dataFlowController')
 const app = express();
 const PORT = 3000;
+const mongoose = require('mongoose');
+
+
+
+// mongodb+srv://velocirabbit:velocirabbit@cluster0.ose86oe.mongodb.net/?retryWrites=true&w=majority
+
+const dbConnect = async () =>{
+  try {
+    await mongoose.connect('mongodb+srv://velocirabbit:velocirabbit@cluster0.ose86oe.mongodb.net/?retryWrites=true&w=majority', {dbName: 'happytracker'})
+
+    console.log('connected to db')
+  }catch(error) {
+    console.log(error)
+  }
+  }
+
+  dbConnect();
 
 app.use(express.json());
 
@@ -19,7 +36,7 @@ app.post('/register',(req, res) => {
 })
 
 //save survery to DB
-app.post('/sendSurvery', dataFlowController.saveSurvey , (req, res) => {
+app.post('/sendSurvey', dataFlowController.saveSurvey , (req, res) => {
   res.status(200).json('data saved')
 })
 
@@ -34,8 +51,6 @@ app.get('/getSurvey', dataFlowController.getSurvey ,(req, res) => {
 app.get('/notifications', (req, res) => {
 
 })
-
-
 
 
 app.use((err, req, res, next) => {
