@@ -7,7 +7,7 @@ const LineChart = () => {
     const [chartData, setChartData] = useState({});
     
     useEffect(() => {
-        fetch('', {
+        fetch('/getSurvey', {
             method: 'GET',
         })
         .then(data => data.json())
@@ -18,7 +18,10 @@ const LineChart = () => {
     }, [])
 
 return (
-    <Line data = {chartData}/>
+    <div>
+        <h3>Chart goes here</h3>
+    </div>
+    /*<Line data = {chartData}/>*/
     )
 }
 
