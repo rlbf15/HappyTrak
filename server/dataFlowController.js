@@ -15,12 +15,12 @@ const dataFlowController = {
  },
 
  saveSurvey: async (req, res, next) => {
-  const { q1, q2, q3, q4, q5 } = req.body;
+  const { week, q1, q2, q3, q4, q5 } = req.body;
 
 
   try {
     //create new document
-    const newSurvey = new Survey({ q1, q2, q3, q4, q5 })
+    const newSurvey = new Survey({ week, q1, q2, q3, q4, q5 })
     const savedSurvey = await newSurvey.save()
 
     return next()

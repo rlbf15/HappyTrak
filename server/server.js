@@ -5,10 +5,10 @@ const credentialsController = require('./credentialsController');
 const app = express();
 const PORT = 3000;
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 
 
-// mongodb+srv://velocirabbit:velocirabbit@cluster0.ose86oe.mongodb.net/?retryWrites=true&w=majority
 
 const dbConnect = async () =>{
   try {
@@ -20,9 +20,12 @@ const dbConnect = async () =>{
   }
   }
 
-  dbConnect();
-
+dbConnect();
+app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
 
 app.use(express.static(path.resolve(__dirname, '../src')));
 
@@ -44,7 +47,6 @@ app.post('/sendSurvey', dataFlowController.saveSurvey , (req, res) => {
 
 //get survey data from db
 app.get('/getSurvey', dataFlowController.getSurvey ,(req, res) => {
-
   res.json(res.locals.surveys)
 })
 
