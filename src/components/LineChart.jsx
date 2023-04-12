@@ -7,6 +7,23 @@ const LineChart = () => {
     const [chartData, setChartData] = useState([]);
     const [haveData, setHaveData] = useState(false);
     
+    const options = {
+        scales: {
+            yAxis: {
+                min: 0,
+                max: 5,
+            },
+        },
+    }
+
+    const questions = {
+    q1: 'Do you feel welcome at the company?',
+    q2: 'Does your manager value your feedback?',
+    q3: 'Do you feel appreciated and respected at work?',
+    q4: 'Do you feel connected to your coworkers?',
+    q5: 'What is your favorite number between 1 and 5?',
+    }
+
     useEffect(() => {
         fetch('http://localhost:3000/getSurvey', {
             method: 'GET',
@@ -47,13 +64,13 @@ const LineChart = () => {
             //console.log(graphData);
             //parses graphData into a form that can be utilized by react-chartjs-2
             const finalData = {
-                labels: graphData.map((data) => data.week_id),
+                labels: graphData.map((data) => `Week ${data.week_id}`),
                 datasets: []
             };
             for (let key of Object.keys(graphData[0])) {
                 if (key !== 'week_id') {
                     finalData.datasets.push({
-                        label: key,
+                        label: questions[key],
                         data: graphData.map((data) => data[key])
                     })
                 }
@@ -68,7 +85,7 @@ const LineChart = () => {
         return <div>Loading...</div>
     }
     else {
-        return <Line data = {chartData}/>
+        return <Line data={chartData} options={options}/>
     }
 }
 
