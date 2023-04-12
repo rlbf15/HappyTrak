@@ -2,7 +2,7 @@
  const mongoose = require('mongoose');
 // URI
 // mongodb+srv://velocirabbit:velocirabbit@cluster0.ose86oe.mongodb.net/?retryWrites=true&w=majority
- 
+
   const Schema = mongoose.Schema;
 
   const userSchema = new Schema({
@@ -13,4 +13,4 @@
 
   const User = mongoose.model('users', Survey);
 
-  module.exports = Survey;
+  module.exports = User;
