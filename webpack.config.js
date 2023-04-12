@@ -11,11 +11,7 @@ module.exports = {
   },
 
   // eslint-disable-next-line no-undef
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
-  mode: 'development',
+  mode: process.env.NODE_ENV,
 
   plugins: [
     new HTMLWebpackPlugin({
