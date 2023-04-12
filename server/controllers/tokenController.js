@@ -43,21 +43,25 @@ tokenController.updateToken = async (req, res, next) => {
 
 // get the token from the database and save to res.locals
 tokenController.getToken = async (req, res, next) => {
-    const { type } = req.body;
-
     try {
-        const currentToken = await Token.find({type: type});
+        const currentToken = await Token.find({ $or: [{ type: 'employee' }, { type: 'employer' }] });
         console.log('currentToken', currentToken)
+        // data being stored to res.locals.token should look like {employeeToken: '123456789', employerToken: '987654321'}
         res.locals.token = {
-            type: currentToken[0].type,
-            token: currentToken[0].token
+            employeeToken: currentToken[0].token,
+            employerToken: currentToken[1].token
         };
-        // data should look like {tpye: employee, token: 123456789}
         return next()
     }catch (error) {
         return next({message: 'Error occured in tokenController.getToken.'})
     }
 
 };
-  
+  //
+//   {
+//     employeeToken: '123456789',
+//     employerToken: '987654321'
+//   }
+
+
 module.exports = tokenController;
