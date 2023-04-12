@@ -17,6 +17,29 @@ app.get('/api/graph', employeeController.getGraph, (req, res) => {
   res.status(200).json(res.locals.graph);
 });
 
+//create this end point and send back the data. Includes name, employee_id, took_survey, week_id
+/* 
+res.locals.employees = [
+  {
+    name: 'Matteo Leg',
+    emplooyee_id: 1234, 
+    took_survey: true, 
+    week_id: 4
+    
+  }, 
+  {
+    name: 'Minzo ka',
+    emplooyee_id: 56987, 
+    took_survey: false, 
+    week_id: 2
+   }
+]
+
+*/
+app.get('/api/employees', employeeController.getEmployees, (req, res) => {
+  res.status(200).json(res.locals.employees);
+});
+
 app.get('/api/reset', employeeController.resetAndPopulateData, (req, res) => {
   res.status(200).send('Survey data reset and repopulated');
 });

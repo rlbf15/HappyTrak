@@ -36,7 +36,7 @@ const App = () => {
       },
     ]
   })
-
+    console.log('this is the chart', chartData); 
 
     return (
         

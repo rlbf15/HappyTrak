@@ -139,3 +139,7 @@ form {
   text-align:center;
   text-decoration: none;
 }
+
+#displayNames {
+  background-color: white;
+}
