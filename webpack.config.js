@@ -10,7 +10,8 @@ module.exports = {
   },
 
   // eslint-disable-next-line no-undef
-  mode: process.env.NODE_ENV,
+
+  mode: 'development',
 
   plugins: [
     new HTMLWebpackPlugin({

@@ -9,40 +9,40 @@ const mongoose = require('mongoose');
 
 // mongodb+srv://velocirabbit:velocirabbit@cluster0.ose86oe.mongodb.net/?retryWrites=true&w=majority
 
-const dbConnect = async () =>{
+const dbConnect = async () => {
   try {
-    await mongoose.connect('mongodb+srv://velocirabbit:velocirabbit@cluster0.ose86oe.mongodb.net/?retryWrites=true&w=majority', {dbName: 'happytracker'})
+    await mongoose.connect('mongodb+srv://velocirabbit:velocirabbit@cluster0.ose86oe.mongodb.net/?retryWrites=true&w=majority', { dbName: 'happytracker' })
 
     console.log('connected to db')
-  }catch(error) {
+  } catch (error) {
     console.log(error)
   }
-  }
+}
 
-  dbConnect();
+dbConnect();
 
 app.use(express.json());
 
 app.use(express.static(path.resolve(__dirname, '../src')));
 
 //login route
-app.post('/login',(req, res) => {
+app.post('/login', (req, res) => {
 
 })
 
 //register route
-app.post('/register',(req, res) => {
+app.post('/register', (req, res) => {
 
 })
 
 //save survery to DB
-app.post('/sendSurvey', dataFlowController.saveSurvey , (req, res) => {
+app.post('/sendSurvey', dataFlowController.saveSurvey, (req, res) => {
   res.status(200).json('data saved')
 })
 
 
 //get survey data from db
-app.get('/getSurvey', dataFlowController.getSurvey ,(req, res) => {
+app.get('/getSurvey', dataFlowController.getSurvey, (req, res) => {
 
   res.json(res.locals.surveys)
 })
