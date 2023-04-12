@@ -5,6 +5,7 @@ const credentialsController = require('./credentialsController');
 const app = express();
 const PORT = 3000;
 const mongoose = require('mongoose');
+const seedDatabase = require('./seedDB')
 const cors = require('cors');
 
 
@@ -19,6 +20,9 @@ const dbConnect = async () =>{
     console.log(error)
   }
   }
+
+  // dbConnect();
+
 
 dbConnect();
 app.use(cors());

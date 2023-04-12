@@ -22,7 +22,7 @@ const dataFlowController = {
     //create new document
     const newSurvey = new Survey({ week, q1, q2, q3, q4, q5 })
     const savedSurvey = await newSurvey.save()
-
+    console.log("survey saved:", savedSurvey);
     return next()
   } catch(error) {
       return next({
