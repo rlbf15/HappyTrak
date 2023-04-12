@@ -68,6 +68,25 @@ employeeController.getGraph = async (req, res, next) => {
   }
 };
 
+employeeController.tookSurvey = async (req, res, next) => {
+  const selectQuery = `SELECT week AS week_id,
+  CAST(SUM(question_0) as INT) as question_0_total,
+  CAST(SUM(question_1) as INT) as question_1_total,
+  CAST(SUM(question_2) as INT) as question_2_total,
+  CAST(SUM(question_3) as INT) as question_3_total
+  FROM survey GROUP BY week ORDER BY week ASC`; // must explicitly order
+  try {
+    const result = await db.query(selectQuery);
+    console.log('result.rows: ', result.rows);
+    res.locals.graph = result.rows;
+    next();
+  } catch (err) {
+    baseError.log = `Error caught in getGraph: ${err}`;
+    baseError.message.err = `Could not retrieve data`;
+    return next(baseError);
+  }
+};
+
 employeeController.resetTable = async (req, res, next) => {
   const reset = `BEGIN;
   TRUNCATE TABLE survey RESTART IDENTITY;

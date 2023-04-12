@@ -7,7 +7,7 @@ body {
 
 button {
     padding: 15px 30px;
-    background-color: white;
+    background-color: #ecedeee3;
     color: hsl(240, 3%, 16%);
     width: 30%;
     margin: auto; 
@@ -16,7 +16,6 @@ button {
     align-items: center;
     border:none;
 }
-
 
 /* Dashboard */
 
@@ -31,10 +30,12 @@ button {
 margin:auto;
 margin-bottom: 5%;
 }
+
 #dashboardMessage h2 {
 margin:auto;
 margin-bottom: 20%;
 }
+
 #dashboardMessage h4 {
 margin:auto;
 margin-bottom: 5%;
@@ -43,9 +44,8 @@ margin-bottom: 5%;
 #emp_button{
 border-radius: 8px;
 border: none;
-box-shadow: 0 0 10px #c1c2c3e3;
+box-shadow: 0 0 5px #c1c2c3e3;
 cursor: pointer;
-
 }
 
 .mainButtons {
@@ -55,6 +55,7 @@ cursor: pointer;
 .weekEmployeeId {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin:auto;
   left: 0;
   right: 0;
@@ -69,7 +70,7 @@ cursor: pointer;
 }
 
 #survey {
-    margin-top: 18%;
+    margin-top: 8%;
 }
 
 #surveyDescription {
@@ -88,7 +89,7 @@ cursor: pointer;
   margin-top: 70px;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 0 500px #f8fbfde3;
+  box-shadow: 0 0 2px #f8fbfde3;
 }
 
 form {
@@ -103,7 +104,7 @@ form {
   width: 40%;
   padding: 50px;
   border-radius: 20px;
-  box-shadow: 0 0 70px #f8fbfdb4;
+  box-shadow: 0 0 10px #f8fbfdb4;
 }
 
 #employeeId{
@@ -124,14 +125,15 @@ form {
 
 #confirmEmployer {
   color: white;
+  background-color: #313232e3;
   border: solid;
-  border-color: white; 
+  border-color: rgb(243, 239, 239); 
   width: 500px;
-  border-radius: 30px;
+  border-radius: 50px;
   margin:20% auto;
   text-align: center;
   padding-bottom: 20px;
-  box-shadow: 0 0 70px #f8fbfdc3;
+  box-shadow: 0 0 5px #f8fbfdc3;
 
 }
 
@@ -145,4 +147,5 @@ form {
   width: 80px;
   text-align:center;
   text-decoration: none;
+  border-radius: 20px;
 }
