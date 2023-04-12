@@ -78,7 +78,7 @@ const LineChart = () => {
                     })
                 }
             }
-            console.log(finalData);
+            //console.log(finalData);
             setChartData(finalData);
             setHaveData(true);
         })
