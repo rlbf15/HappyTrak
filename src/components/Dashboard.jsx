@@ -8,7 +8,7 @@ export default function Dashboard() {
   const [createToken, setCreateToken] = useState('abc');
   const navigate = useNavigate();
 
-  
+  //this is to fetch a create account password for a new employee to create an account. otherwise, anyone can create an account to log into 
   useEffect(() => {
     fetch('/getToken', {
       method: 'GET',
@@ -21,7 +21,7 @@ export default function Dashboard() {
         setCreateToken(data.token);
       })
       .catch((err) => {
-        console.log({ err: 'Error authenticating user' });
+        console.log({ err: 'Error authenticating user:' + err });
       });
   }, []);
   
@@ -51,7 +51,7 @@ export default function Dashboard() {
         console.log({ err: 'Error authenticating user' });
       });
     } else {
-      console.log('this ain\'t right');
+      console.log('You don\'t work here!');
     }
     
   }

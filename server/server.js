@@ -5,6 +5,7 @@ const credentialsController = require('./credentialsController');
 const app = express();
 const PORT = 3000;
 const mongoose = require('mongoose');
+const seedDatabase = require('./seedDB')
 const cors = require('cors');
 
 
@@ -19,6 +20,9 @@ const dbConnect = async () =>{
     console.log(error)
   }
   }
+
+  // dbConnect();
+
 
 dbConnect();
 app.use(cors());
@@ -47,7 +51,8 @@ app.post('/sendSurvey', dataFlowController.saveSurvey , (req, res) => {
 
 //get survey data from db
 app.get('/getSurvey', dataFlowController.getSurvey ,(req, res) => {
-  res.json(res.locals.surveys)
+  const surveyData = res.locals.surveys;
+  res.status(200).send(surveyData);
 })
 
 //get notification updates
