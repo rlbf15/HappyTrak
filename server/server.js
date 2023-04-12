@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const dataFlowController = require('./dataFlowController');
 const credentialsController = require('./credentialsController');
+const tokenController = require('./controllers/tokenController');
 const app = express();
 const PORT = 3000;
 const mongoose = require('mongoose');
@@ -35,12 +36,27 @@ app.use(express.static(path.resolve(__dirname, '../src')));
 
 //login route
 app.post('/login', credentialsController.verifyUser, (req, res) => {
-  res.status(200).json({"message": "user logged in"});
+  res.status(200).json(res.locals.type);
 })
 
 //register route
 app.post('/register', credentialsController.createUser, (req, res) => {
   res.status(200).json({"message": "user registered"});
+})
+
+// I used this to initialize the Token collection in the DB. Only use once. USE updateToken TO UPDATE THE TOKEN.
+// app.post('/createTokens', tokenController.saveToken, (req, res) => {
+//   res.status(200).json('tokens created')
+// });
+
+//update token route
+app.post('/updateToken', tokenController.updateToken, (req, res) => {
+  res.status(200).json('token updated')
+});
+
+//get token route
+app.get('/getToken', tokenController.getToken, (req, res) => {
+  res.status(200).json(res.locals.token);
 })
 
 //save survery to DB
