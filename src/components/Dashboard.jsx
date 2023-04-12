@@ -41,7 +41,8 @@ export default function Dashboard() {
       },
       body: JSON.stringify({
         username: username,
-        password: password
+        password: password,
+        type: type
       }),
     })
       .then((response) => {
@@ -72,18 +73,20 @@ export default function Dashboard() {
         type
       }),
     })
+      .then((data) => data.json())
       .then((response) => {
+        console.log(response.type)
         console.log(response)
         console.log('inside authenticate user response')
-        if (response.ok) {
-          if (response.type === 'employee') {
-            navigate('/survey');
-          } else {
-            navigate('/confirmEmployer');
-          }
+        // if (response.ok) {
+        if (response.type === 'employee') {
+          navigate('/survey');
         } else {
-          throw new Error('Error authenticating user');
+          navigate('/confirmEmployer');
         }
+        // } else {
+        //   throw new Error('Error authenticating user');
+        // }
       })
       .catch((err) => {
         console.log({ err: err.message });
@@ -165,8 +168,8 @@ export default function Dashboard() {
         <input className='submit' type='submit' value='Login' />
       </form>
       {/* <ConfirmEmployer username={'Akeem'}/> */}
-     
-     
+
+
     </div>
   );
 }
