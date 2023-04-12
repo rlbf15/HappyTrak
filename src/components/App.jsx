@@ -43,7 +43,7 @@ const App = () => {
 		<div className='container'>
 			<Routes>
         <Route path='/survey' element={<Survey/> }/>
-				<Route path='/graph' element={<LineChart chartData={chartData}/>}/>
+				<Route path='/graph' element={<LineChart />}/>
 				<Route path='/' element={ <Dashboard /> } />
         <Route path='/confirmEmployer' element={<ConfirmEmployer /> } />
 			</Routes>
