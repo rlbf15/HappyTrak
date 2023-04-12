@@ -9,9 +9,12 @@ const LineChart = () => {
     
     const options = {
         scales: {
-            yAxis: {
+            y: {
                 min: 0,
                 max: 5,
+                ticks: {
+                    stepSize: 0.5,
+                },
             },
         },
     }
