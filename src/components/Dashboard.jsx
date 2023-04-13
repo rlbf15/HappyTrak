@@ -103,7 +103,7 @@ export default function Dashboard() {
   return (
     <div className='mainButtons'>
       <section id='dashboardMessage'>
-        <h1 class='fade-in-1'>WELCOME</h1> <h1 class='fade-in-2'>TO</h1> <h1 class='fade-in-3'>HAPPYTRAK!</h1>
+        <h1 className='fade-in-1'>WELCOME</h1> <h1 className='fade-in-2'>TO</h1> <h1 className='fade-in-3'>HAPPYTRAK!</h1>
       </section>
       
       <form className='create-login' onSubmit={registerUser}>
