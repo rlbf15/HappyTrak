@@ -16,5 +16,3 @@ module.exports = {
 };
 
 
-// create employee table command
-

@@ -34,47 +34,50 @@ const ConfirmEmployer = (props) => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleClick = async (e) => {
     console.log('clicked');
     e.preventDefault();
-    // const response = await fetch ('http://localhost3000/graph',
-    // {
-    //   method: 'POST',
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({employerID, password})
-    // })
+    const response = await fetch ('http://localhost3000/api/confirmEmployer',
+    {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({employerID, password})
+    })
 
-    // const parsedData = await response.json();
-    // parsedData.message === 'verified' ? setRedirect(true) : null
+    const parsedData = await response.json();
+    parsedData.message === 'verified' ? setRedirect(true) : null
 
-    // useEffect(()=> {
-    //   if (redirect) {
-    //     navigate('/')
-    //   }
-    // }, 
-    // [redirect])
-    <Link to='/graph'></Link>
+    useEffect(()=> {
+      if (redirect) {
+        navigate('/graph')
+      }
+    }, 
+    [redirect])
   };
 
   return (
     <div id= 'confirmEmployer'>
       <h3>Please enter your Employer ID:</h3>
-      <form className='employerLogin' onSubmit={handleSubmit}>
+      <form className='employerLogin' onSubmit={handleClick}>
         <input
+          className='employerFillIn'
           placeholder='Enter your Employer ID'
           value={employerID}
           onChange={(e) => setEmployerID(e.target.value)}
           type="text" 
         />
         <input
+          className='employerFillIn'
           type='password'
           placeholder='enter your password'
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
-        <button id="confirmSubmit">
+        <button 
+          id="loginButton"
+          onClick={handleClick}>
           Login
         </button>
       </form>

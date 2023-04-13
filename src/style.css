@@ -94,7 +94,7 @@ form {
   margin:auto;
   margin-top:7%;
   width: 40%;
-  padding: 50px;
+  padding: 25px;
   border-radius: 20px;
   box-shadow: 0 0 70px #f8fbfdb4;
 }
@@ -128,7 +128,13 @@ form {
 
 }
 
-#confirmSubmit{
+.employerFillIn {
+  display: grid;
+  align-content: space-around;
+  margin: 10px;
+}
+
+#loginButton{
   position:absolute;
   left: 0;
   right: 0;
