@@ -8,15 +8,15 @@ const employerController = {};
   //   password: { type: String, required: true }
   // })
 
-/// we don't have a
 employerController.createEmployer = (req, res, next) => {
     if (!req.body.employerID || !req.body.password) {
+        // add redirect in the form of an object
         return next('No employer ID or password given')
     }
     const { employerID, password } = req.body;
     Employer.create({ employerID, password })
         .then((result) => {
-            console.log('this is the result from mongo', result)
+            // console.log('this is the result from mongo', result)
             res.locals.employer = result;
             return next();
         })
@@ -31,7 +31,7 @@ employerController.createEmployer = (req, res, next) => {
 
 employerController.verifyEmployer = (req, res, next) => {
     const { employerID, password } = req.body;
-    // if (!employerID || !password) return next('Missing employerID or password in userController.verifyUser');
+    if (!employerID || !password) return next('Missing employerID or password in userController.verifyUser');
     // return next();
     Employer.findOne({ employerID }).exec()
         .then((employerID) => {
