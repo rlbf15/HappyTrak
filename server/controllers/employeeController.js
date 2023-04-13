@@ -1,4 +1,4 @@
-const db = require('./dataModel.js');
+const db = require('../models/dataModel.js');
 
 
 const baseError = {
