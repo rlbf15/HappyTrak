@@ -57,7 +57,7 @@ app.post('/deleteUser', credentialsController.deleteUser, (req, res) => {
 
 //get all employees route
 app.get('/getUsers', credentialsController.getEmployees, (req, res) => {
-  // res.locals.employees looks like [{_id: 'asdf', username: 'asdf', type: 'employee'}, {_id: 'asdf', username: 'asdf', type: 'employee'}]
+  // res.locals.employees looks like ["employee1", "employee2", "employee3"]
   res.status(200).json(res.locals.employees);
 });
 
