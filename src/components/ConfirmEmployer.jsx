@@ -31,13 +31,19 @@ const ConfirmEmployer = (props) => {
   const [ employerID, setEmployerID ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ redirect, setRedirect ] = useState(false);
-
   const navigate = useNavigate();
 
+  useEffect(()=> {
+    if (redirect) {
+      navigate('/graph')
+    }
+  }, 
+  [redirect])
+  
   const handleClick = async (e) => {
     console.log('clicked');
     e.preventDefault();
-    const response = await fetch ('http://localhost3000/api/confirmEmployer',
+    const response = await fetch ('/api/confirmEmployer',
     {
       method: 'POST',
       headers: {
@@ -49,12 +55,6 @@ const ConfirmEmployer = (props) => {
     const parsedData = await response.json();
     parsedData.message === 'verified' ? setRedirect(true) : null
 
-    useEffect(()=> {
-      if (redirect) {
-        navigate('/graph')
-      }
-    }, 
-    [redirect])
   };
 
   return (
