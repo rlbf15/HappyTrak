@@ -42,7 +42,7 @@ const App = () => {
     fetch("/api/graph")
       .then((response) => response.json()) //response as json
       .then((data) => {
-        console.log("data",data)
+        console.log("data from ",data)
         setSurveyData(data);
         setChartData({
           // sample was missing the mapping of the data in individudal items

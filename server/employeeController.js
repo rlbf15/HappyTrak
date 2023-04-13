@@ -1,5 +1,5 @@
 const db = require('./dataModel.js');
-const dummyData = require('../src/utils/dummyData')
+
 
 const baseError = {
   status: 400,
@@ -17,7 +17,7 @@ const employeeController = {};
 // question_3: 1
 
 employeeController.getEmployees = (req, res, next) => {
-  res.locals.employees = dummyData; 
+  // res.locals.employees = testData; 
   return next(); 
 }
 
@@ -65,7 +65,7 @@ employeeController.getGraph = async (req, res, next) => {
   FROM survey GROUP BY week ORDER BY week ASC`; // must explicitly order
   try {
     const result = await db.query(selectQuery);
-    console.log('result.rows: ', result.rows);
+    // console.log('result.rows: ', result.rows);
     res.locals.graph = result.rows;
     next();
   } catch (err) {
