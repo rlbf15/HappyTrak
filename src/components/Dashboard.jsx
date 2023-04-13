@@ -118,76 +118,84 @@ export default function Dashboard() {
       <section id='dashboardMessage'>
         <h1 className='fade-in-1'>WELCOME</h1> <h1 className='fade-in-2'>TO</h1> <h1 className='fade-in-3'>HAPPYTRAK!</h1>
       </section>
+      {/* div for create account page */}
+      <div className='main-cont'>
+        <div className='create-account'>
+          <form className='create-login' onSubmit={registerUser}>
+          <h4>Create Account</h4>
 
-      <form className='create-login' onSubmit={registerUser}>
-        <h4>Create Account</h4>
-
-        <label value='inputToken'><br />Enter Token<br /> </label>
-        <input
-          id='inputToken'
-          name='inputToken'
-          type='text'
-          onChange={(e) => setInputToken(e.target.value)}
-        />
-        <label value='username'><br />Enter Email<br /></label>
-        <input
-          id='username'
-          name='username'
-          type='text'
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <label value='password'><br />Create password<br /></label>
-        <input
-          id='password'
-          name='password'
-          type='password'
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <div>
-          <label>
-            Employee
-            <input
-              type='radio'
-              name='type'
-              value='employee'
-              onChange={(e) => setType(e.target.value)}
-              checked={type === 'employee'}
-            />
-          </label>
-          <label>
-            Employer
-            <input
-              type='radio'
-              name='type'
-              value='employer'
-              onChange={(e) => setType(e.target.value)}
-              checked={type === 'employer'}
-            />
-          </label>
+          <label value='inputToken'><br />Enter Token<br /> </label>
+          <input
+            id='inputToken'
+            name='inputToken'
+            type='text'
+            onChange={(e) => setInputToken(e.target.value)}
+          />
+          <label value='username'><br />Enter Email<br /></label>
+          <input
+            id='username'
+            name='username'
+            type='text'
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <label value='password'><br />Create password<br /></label>
+          <input
+            id='password'
+            name='password'
+            type='password'
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <div className='radio-btn'> 
+            <label>
+              Employee
+              <input
+                type='radio'
+                name='type'
+                value='employee'
+                onChange={(e) => setType(e.target.value)}
+                checked={type === 'employee'}
+              />
+            </label>
+            <label>
+              Employer
+              <input
+                type='radio'
+                name='type'
+                value='employer'
+                onChange={(e) => setType(e.target.value)}
+                checked={type === 'employer'}
+              />
+            </label>
+          </div>
+          <input className='submit last-btn' type='submit' value='Create Account' />
+        </form>
         </div>
-        <input className='submit' type='submit' value='Create Account' />
-      </form>
 
-      <form className='create-login' onSubmit={authenticateUser}>
-        <h4>Account Login</h4>
-        <label value='username'><br />Enter Email<br /></label>
-        <input
-          id='username'
-          name='username'
-          type='text'
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <label value='password'><br />Enter password<br /></label>
-        <input
-          id='password'
-          name='password'
-          type='password'
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        {/* div for Account Login */}
+        <div className='account-login'>
+          <form className='create-login' onSubmit={authenticateUser}>
+          <h4>Account Login</h4>
+          <label value='username'><br />Enter Email<br /></label>
+          <input
+            id='username'
+            name='username'
+            type='text'
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <label value='password'><br />Enter password<br /></label>
+          <input
+            id='password'
+            name='password'
+            type='password'
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <input className='submit' type='submit' value='Login' />
-      </form>
-      {/* <ConfirmEmployer username={'Akeem'}/> */}
+          <input className='submit last-btn' type='submit' value='Login' />
+        </form>
+        </div>
+      </div>
+
+      
 
 
     </div>
