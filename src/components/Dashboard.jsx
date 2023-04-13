@@ -31,8 +31,19 @@ export default function Dashboard() {
       });
   }, []);
 
+  function tokenCheck() {
+    if (type === 'employee' && employeeToken === inputToken) {
+      return {nav: navigate('/Survey')};
+    } else if (type === 'employer' && employerToken === inputToken) {
+      return {nav: navigate('/ConfirmEmployer')};
+    } else {
+      return false; 
+    }
+  }
 
   function registerUser(event) {
+    const tokenData = tokenCheck()
+    if (!tokenData) return console.log('please enter the corret token:')
     event.preventDefault();
     fetch('http://localhost:3000/register', {
       method: 'POST',
@@ -41,17 +52,14 @@ export default function Dashboard() {
       },
       body: JSON.stringify({
         username: username,
-        password: password
+        password: password,
+        type: type
       }),
     })
       .then((response) => {
-        if (type === 'employee' && employeeToken === inputToken) {
-          navigate('/Survey');
-        } else if (type === 'employer' && employerToken === inputToken) {
-          navigate('/ConfirmEmployer');
-        } else {
-          console.log('please enter the corret token');
-        }
+        console.log("successfully created an account!");
+        tokenData.nav
+
       })
       .catch((err) => {
         console.log({ err: 'Error authenticating user' });
@@ -72,18 +80,19 @@ export default function Dashboard() {
         type
       }),
     })
+
+      .then((data) => data.json())
       .then((response) => {
-        console.log(response)
         console.log('inside authenticate user response')
-        if (response.ok) {
-          if (response.type === 'employee') {
-            navigate('/survey');
-          } else {
-            navigate('/confirmEmployer');
-          }
+        // if (response.ok) {
+        if (response.type === 'employee') {
+          navigate('/survey');
         } else {
-          throw new Error('Error authenticating user');
+          navigate('/confirmEmployer');
         }
+        // } else {
+        //   throw new Error('Error authenticating user');
+        // }
       })
       .catch((err) => {
         console.log({ err: err.message });
@@ -94,19 +103,20 @@ export default function Dashboard() {
   return (
     <div className='mainButtons'>
       <section id='dashboardMessage'>
-        <h1>WELCOME</h1>
-        <h2>to HappyTrak!</h2>
+        <h1 className='fade-in-1'>WELCOME</h1> <h1 className='fade-in-2'>TO</h1> <h1 className='fade-in-3'>HAPPYTRAK!</h1>
       </section>
+      
       <form className='create-login' onSubmit={registerUser}>
-        {/* form content */}
-        <label value='inputToken'>Enter Token<br /> </label>
+        <h4>Create Account</h4>
+
+        <label value='inputToken'><br />Enter Token<br /> </label>
         <input
           id='inputToken'
           name='inputToken'
           type='text'
           onChange={(e) => setInputToken(e.target.value)}
         />
-        <label value='username'><br />Create username<br /></label>
+        <label value='username'><br />Enter Email<br /></label>
         <input
           id='username'
           name='username'
@@ -117,7 +127,7 @@ export default function Dashboard() {
         <input
           id='password'
           name='password'
-          type='text'
+          type='password'
           onChange={(e) => setPassword(e.target.value)}
         />
         <div>
@@ -146,8 +156,8 @@ export default function Dashboard() {
       </form>
 
       <form className='create-login' onSubmit={authenticateUser}>
-        {/* form content */}
-        <label value='username'><br />Enter username<br /></label>
+        <h4>Account Login</h4>
+        <label value='username'><br />Enter Email<br /></label>
         <input
           id='username'
           name='username'
@@ -158,15 +168,15 @@ export default function Dashboard() {
         <input
           id='password'
           name='password'
-          type='text'
+          type='password'
           onChange={(e) => setPassword(e.target.value)}
         />
 
         <input className='submit' type='submit' value='Login' />
       </form>
       {/* <ConfirmEmployer username={'Akeem'}/> */}
-     
-     
+
+
     </div>
   );
 }
@@ -178,3 +188,12 @@ export default function Dashboard() {
 // <Route path='/survey' element={<Survey/> }/>
 // <Route path='/confirmEmployer'  /> } /> 
 // </Routes>
+
+
+        // if (type === 'employee' && employeeToken === inputToken) {
+        //   navigate('/Survey');
+        // } else if (type === 'employer' && employerToken === inputToken) {
+        //   navigate('/ConfirmEmployer');
+        // } else {
+        //   console.log('please enter the corret token');
+        // }

@@ -65,7 +65,7 @@ const Survey = () => {
   const individualQuestion = [];
   for (let i = 1; i <= questions.length; i++) {
     individualQuestion.push(
-      <div key={`Question_${i}`}> {questions[i]}<br />
+      <div key={`Question_${i}`}> {questions[i - 1]}<br />
 
         <label htmlFor="{`choice_${i}`}">   1 </label>
         <input type="radio" name={`choice_${i}`} onChange={() => updateChoice(i, 'q1')} />
@@ -86,7 +86,9 @@ const Survey = () => {
   return (
 
     <div id='survey'>
+      <div id='surveyHeader'>
       <h3><i>Please complete the following survey:</i></h3>
+      </div>
       <form id='survey-box' style={styles} onSubmit={handleSubmit}>
 
         <div className="weekEmployeeId">
@@ -100,7 +102,7 @@ const Survey = () => {
           <input type="text" id="employeeId" placeholder="Please enter Employee ID" /*onChange={updateEmployeeID}*/ />
         </div>
 
-        <p id="SurveyDescription"><b>Please select a rating to answer each question, where 1 is the lowest and 5 is the highest.</b></p>
+        <p id="surveyDescription"><b>Please select a rating to answer each question, where 1 is the lowest and 5 is the highest.</b></p>
         <label className="questions">
           {individualQuestion}
         </label><br />
