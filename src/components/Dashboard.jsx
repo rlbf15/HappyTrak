@@ -72,19 +72,18 @@ export default function Dashboard() {
         type
       }),
     })
+      .then((response) => response.json())
       .then((response) => {
         console.log(response)
         console.log('inside authenticate user response')
-        if (response.ok) {
           if (response.type === 'employee') {
             navigate('/survey');
-          } else {
+          } else if (response.type === 'employer') {
             navigate('/confirmEmployer');
-          }
-        } else {
+          } else {
           throw new Error('Error authenticating user');
-        }
-      })
+          }
+        })
       .catch((err) => {
         console.log({ err: err.message });
       });
@@ -94,8 +93,7 @@ export default function Dashboard() {
   return (
     <div className='mainButtons'>
       <section id='dashboardMessage'>
-        <h1>WELCOME</h1>
-        <h2>to HappyTrak!</h2>
+        <h1 class='fade-in-1'>WELCOME</h1> <h1 class='fade-in-2'>TO</h1> <h1 class='fade-in-3'>HAPPYTRAK!</h1>
       </section>
       <form className='create-login' onSubmit={registerUser}>
         {/* form content */}
@@ -117,7 +115,7 @@ export default function Dashboard() {
         <input
           id='password'
           name='password'
-          type='text'
+          type='password'
           onChange={(e) => setPassword(e.target.value)}
         />
         <div>
@@ -158,7 +156,7 @@ export default function Dashboard() {
         <input
           id='password'
           name='password'
-          type='text'
+          type='password'
           onChange={(e) => setPassword(e.target.value)}
         />
 
