@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Quotes }  from '../../server/models/quotes/quotes'
+import { Quotes } from '../../server/models/quotes/quotes'
 
 const ConfirmEmployer = ({ username, password }) => {
   const [users, setUsers] = useState([]);
@@ -15,8 +15,8 @@ const ConfirmEmployer = ({ username, password }) => {
     const qOfTheDay = quotes[randomIndex];
     setQuote(qOfTheDay)
   });
-    
-  
+
+
 
 
   // FUNCTION TO CHANGE STATE OF FETCHCOUNTER
@@ -34,6 +34,29 @@ const ConfirmEmployer = ({ username, password }) => {
         console.log({ err: 'Error fetching users' });
       });
   }, [fetchCounter]);
+
+  function changeToken(event, tokenType) {
+    event.preventDefault();
+    const inputToken = event.target.value;
+    fetch('http://localhost:3000/updateToken', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        type: tokenType,
+        token: inputToken,
+      }),
+    })
+      .then((response) => {
+        console.log('Token was Added! : ' + response)
+      })
+      .catch((err) => {
+        console.log({ err: 'Error authenticating user: ' + err });
+      });
+  }
+
+
 
   function deleteUser(user) {
     fetch(`http://localhost:3000/deleteUser`, {
@@ -57,10 +80,10 @@ const ConfirmEmployer = ({ username, password }) => {
   }
 
   return (
-    
+
     <div className='confirmContainer'>
-       <div className='create-login'>
-      {quote}
+      <div className='create-login'>
+        {quote}
       </div>
       {/* Display users fetched from the database */}
       <div id='users' className='create-login'>
@@ -98,9 +121,9 @@ const ConfirmEmployer = ({ username, password }) => {
           <input className='submit' type='submit' value='Submit' />
         </form>
       </div>
-     
-       
-      </div>
+
+
+    </div>
   );
 };
 
