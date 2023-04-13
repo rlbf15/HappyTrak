@@ -65,8 +65,7 @@ const Survey = () => {
   const individualQuestion = [];
   for (let i = 1; i <= questions.length; i++) {
     individualQuestion.push(
-      <div key={`Question_${i}`}> {questions[i - 1]}<br />
-
+      <div key={`Question_${i}`}> {questions[i - 1]}<br/>
         <label htmlFor="{`choice_${i}`}">   1 </label>
         <input type="radio" name={`choice_${i}`} onChange={() => updateChoice(1, `q${i}`)} />
         <label htmlFor="{`choice_${i}`}">   2 </label>

@@ -33,10 +33,12 @@ export default function Dashboard() {
 
   function registerUser(event) {
     if (type === 'employee' && employeeToken !== inputToken) {
-      return console.log('Please enter the correct token')
+      window.alert('Enter the correct login Token!');
+      return console.log('Please enter the correct token');
     }
     if (type === 'employer' && employerToken !== inputToken) {
-      return console.log('Please enter the correct token')
+      window.alert('Enter the correct login Token!');
+      return console.log('Please enter the correct token');
     }
 
     event.preventDefault();
@@ -55,14 +57,14 @@ export default function Dashboard() {
         if (response.ok && type === 'employee') {
           console.log("Account created!");
           navigate('/Survey');
-        } 
+        }
         else if (response.ok && type === 'employer') {
           console.log("Account created!");
           navigate('/ConfirmEmployer');
         } else {
-          console.log("Account already exists!");
+          window.alert('Account already exists!')
         }
-        
+
       })
       .catch((err) => {
         console.log({ err: 'Error authenticating user' });
@@ -91,11 +93,11 @@ export default function Dashboard() {
 
         if (response.type === 'employee') {
           navigate('/survey');
-        } 
+        }
         else if (response.type === 'employer') {
           navigate('/confirmEmployer');
         } else {
-          console.log('username or password is incorrect')
+          window.alert('username or password is incorrect')
         }
       })
       .catch((err) => {
@@ -124,8 +126,9 @@ export default function Dashboard() {
         <input
           id='username'
           name='username'
-          type='text'
+          type='email'
           onChange={(e) => setUsername(e.target.value)}
+          required
         />
         <label value='password'><br />Create password<br /></label>
         <input
@@ -167,6 +170,7 @@ export default function Dashboard() {
           name='username'
           type='text'
           onChange={(e) => setUsername(e.target.value)}
+
         />
         <label value='password'><br />Enter password<br /></label>
         <input
