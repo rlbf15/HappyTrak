@@ -41,9 +41,13 @@ app.get('/api/attendance', employeeController.getAttendance, (req, res) => {
   res.status(200).json(res.locals.attendance);
 });
 
-app.get('/api/reset', employeeController.resetAndPopulateData, (req, res) => {
-  res.status(200).send('Survey data reset and repopulated');
+app.get('/api/took-survey', employeeController.tookSurvey, (req, res) => {
+  res.status(200).json(res.locals.tookSurvey);
 });
+
+// app.get('/api/reset', employeeController.resetAndPopulateData, (req, res) => {
+//   res.status(200).send('Survey data reset and repopulated');
+// });
 
 app.post('/api/reset-table', employeeController.resetTable, (req, res) => {
   res.status(200).send('Table reset successfully.');
