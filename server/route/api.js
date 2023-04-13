@@ -35,6 +35,14 @@ router.get('/graph', employeeController.getGraph, (req, res) => {
     res.status(200).json(res.locals.graph);
 });
 
+router.get('/attendance', employeeController.getAttendance, (req, res) => {
+    res.status(200).json(res.locals.attendance);
+});
+
+router.get('/took-survey', employeeController.tookSurvey, (req, res) => {
+    res.status(200).json(res.locals.tookSurvey);
+});
+
 router.get('/reset', employeeController.resetAndPopulateData, (req, res) => {
     res.status(200).send('Survey data reset and repopulated');
 });
