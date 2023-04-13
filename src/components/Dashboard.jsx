@@ -41,7 +41,8 @@ export default function Dashboard() {
       },
       body: JSON.stringify({
         username: username,
-        password: password
+        password: password,
+        type: type
       }),
     })
       .then((response) => {
@@ -72,18 +73,18 @@ export default function Dashboard() {
         type
       }),
     })
+      .then((data) => data.json())
       .then((response) => {
-        console.log(response)
         console.log('inside authenticate user response')
-        if (response.ok) {
-          if (response.type === 'employee') {
-            navigate('/survey');
-          } else {
-            navigate('/confirmEmployer');
-          }
+        // if (response.ok) {
+        if (response.type === 'employee') {
+          navigate('/survey');
         } else {
-          throw new Error('Error authenticating user');
+          navigate('/confirmEmployer');
         }
+        // } else {
+        //   throw new Error('Error authenticating user');
+        // }
       })
       .catch((err) => {
         console.log({ err: err.message });
@@ -97,16 +98,18 @@ export default function Dashboard() {
         <h1>WELCOME</h1>
         <h2>to HappyTrak!</h2>
       </section>
+      
       <form className='create-login' onSubmit={registerUser}>
-        {/* form content */}
-        <label value='inputToken'>Enter Token<br /> </label>
+        <h4>Create Account</h4>
+
+        <label value='inputToken'><br />Enter Token<br /> </label>
         <input
           id='inputToken'
           name='inputToken'
           type='text'
           onChange={(e) => setInputToken(e.target.value)}
         />
-        <label value='username'><br />Create username<br /></label>
+        <label value='username'><br />Enter Email<br /></label>
         <input
           id='username'
           name='username'
@@ -146,8 +149,8 @@ export default function Dashboard() {
       </form>
 
       <form className='create-login' onSubmit={authenticateUser}>
-        {/* form content */}
-        <label value='username'><br />Enter username<br /></label>
+        <h4>Account Login</h4>
+        <label value='username'><br />Enter Email<br /></label>
         <input
           id='username'
           name='username'
@@ -165,8 +168,8 @@ export default function Dashboard() {
         <input className='submit' type='submit' value='Login' />
       </form>
       {/* <ConfirmEmployer username={'Akeem'}/> */}
-     
-     
+
+
     </div>
   );
 }
