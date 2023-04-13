@@ -1,5 +1,6 @@
 const db = require('./dataModel.js');
 
+
 const baseError = {
   status: 400,
   message: { err: 'An error occurred' },
@@ -15,10 +16,16 @@ const employeeController = {};
 // question_2: 1,
 // question_3: 1
 
+employeeController.getEmployees = (req, res, next) => {
+  // res.locals.employees = testData; 
+  return next(); 
+}
+
+
 employeeController.createResponse = async (req, res, next) => {
   const { week, employee_id, question_0, question_1, question_2, question_3 } =
     req.body;
-  reqArray = [
+  const reqArray = [
     week,
     employee_id,
     question_0,
@@ -26,7 +33,7 @@ employeeController.createResponse = async (req, res, next) => {
     question_2,
     question_3,
   ];
-  findArray = [week, employee_id];
+  const findArray = [week, employee_id];
   const insertResponse =
     'INSERT INTO survey(week, employee_id, question_0, question_1, question_2, question_3) VALUES ($1, $2, $3, $4, $5, $6);';
   const findResponse = `SELECT * FROM survey WHERE week=($1) AND employee_id=($2);`;
@@ -58,7 +65,7 @@ employeeController.getGraph = async (req, res, next) => {
   FROM survey GROUP BY week ORDER BY week ASC`; // must explicitly order
   try {
     const result = await db.query(selectQuery);
-    console.log('result.rows: ', result.rows);
+    // console.log('result.rows: ', result.rows);
     res.locals.graph = result.rows;
     next();
   } catch (err) {

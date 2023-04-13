@@ -37,6 +37,82 @@ app.get('/api/graph', employeeController.getGraph, (req, res) => {
   res.status(200).json(res.locals.graph);
 });
 
+const testData = [
+  {
+    employee_name: "Kasey Wolff",
+    employee_id: 7825,  
+    week_id: 2
+    
+},
+{
+    employee_name: "Matteo Diterlizzi ",
+    employee_id: 9876, 
+    week_id: 2
+    
+},
+{
+    employee_name: "Alejandro Flores",
+    employee_id: 5689, 
+    week_id: 1
+    
+},
+{
+    employee_name: "Jon Cruz",
+    employee_id: 1234,  
+    week_id: 2
+    
+},
+{
+  employee_name: 'Matteo Leg',
+  emplooyee_id: 1234, 
+  week_id: 3
+  
+}, 
+{
+  employee_name: 'Minzo ka',
+  emplooyee_id: 2665, 
+  week_id: 1
+ }, 
+ {
+  employee_name: 'Carlo ke',
+  emplooyee_id: 458933, 
+  week_id: 4
+  
+}, 
+{
+  employee_name: 'Fabio le',
+  emplooyee_id: 46987, 
+  week_id: 3
+ },
+ {
+  employee_name: 'Pablo eg',
+  emplooyee_id: 1234, 
+  week_id: 4
+  
+}, 
+{
+  employee_name: 'Ke ka',
+  emplooyee_id: 56987,  
+  week_id: 2
+ },
+ {
+  employee_name: 'Matteo Leg',
+  emplooyee_id: 1234, 
+  week_id: 1
+  
+}, 
+{
+  employee_name: 'Minzo ka',
+  emplooyee_id: 56987, 
+  week_id: 2
+ }
+]
+
+app.get('/api/employees', employeeController.getEmployees, (req, res) => {
+  // res.status(200).json(res.locals.employees);
+  res.status(200).json(testData);
+});
+
 app.get('/api/reset', employeeController.resetAndPopulateData, (req, res) => {
   res.status(200).send('Survey data reset and repopulated');
 });
