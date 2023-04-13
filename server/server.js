@@ -37,6 +37,7 @@ app.use(express.static(path.resolve(__dirname, '../src')));
 //login route
 app.post('/login', credentialsController.verifyUser, (req, res) => {
   // res.locals.type looks like {type: 'employee'}
+  // res.status(200).json({type: res.locals.type, authenticated: res.locals.isAuthenticated});
   res.status(200).json(res.locals.type);
 })
 
