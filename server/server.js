@@ -55,6 +55,12 @@ app.post('/deleteUser', credentialsController.deleteUser, (req, res) => {
   res.status(200).json({"message": "user deleted"});
 });
 
+//get all employees route
+app.get('/getUsers', credentialsController.getEmployees, (req, res) => {
+  // res.locals.employees looks like ["employee1", "employee2", "employee3"]
+  res.status(200).json(res.locals.employees);
+});
+
 //update token route
 app.post('/updateToken', tokenController.updateToken, (req, res) => {
   res.status(200).json('token updated')
