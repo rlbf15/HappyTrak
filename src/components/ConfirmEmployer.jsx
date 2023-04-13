@@ -6,18 +6,15 @@ const ConfirmEmployer = ({ username, password }) => {
   const [users, setUsers] = useState([]);
   const [fetchCounter, setFetchCounter] = useState(0);
   const [quote, setQuote] = useState('')
-
-
+  const [employeeToken, setEmployeeToken] = useState('');
+  const [employerToken, setEmployerToken] = useState('');
 
   useEffect(() => {
     const quotes = Quotes
     const randomIndex = Math.floor((Math.random() * quotes.length));
     const qOfTheDay = quotes[randomIndex];
     setQuote(qOfTheDay)
-  });
-
-
-
+  }, []);
 
   // FUNCTION TO CHANGE STATE OF FETCHCOUNTER
   const incrementCounter = () => {
@@ -37,7 +34,7 @@ const ConfirmEmployer = ({ username, password }) => {
 
   function changeToken(event, tokenType) {
     event.preventDefault();
-    const inputToken = event.target.value;
+    const inputToken = tokenType === 'employee' ? employeeToken : employerToken;
     fetch('http://localhost:3000/updateToken', {
       method: 'POST',
       headers: {
@@ -110,14 +107,14 @@ const ConfirmEmployer = ({ username, password }) => {
         <form className='create-login' onSubmit={(e) => changeToken(e, 'employee')}>
           <h1>Hello {username} </h1>
           <label htmlFor='employeeToken'>Change Employee Token<br /> </label>
-          <input id='employeeToken' name='employeeToken' type='text' />
+          <input id='employeeToken' value={employeeToken} name='employeeToken' type='text' onChange={(e) => setEmployeeToken(e.target.value)} />
           <input className='submit' type='submit' value='Submit' />
-        </form>
+        </form >
 
         {/* Change employer token form */}
         <form className='create-login' onSubmit={(e) => changeToken(e, 'employer')}>
           <label htmlFor='employerToken'>Change Employer Token<br /> </label>
-          <input id='employerToken' name='employerToken' type='text' />
+          <input id='employerToken' value={employerToken} name='employerToken' type='text' onChange={(e) => setEmployerToken(e.target.value)} />
           <input className='submit' type='submit' value='Submit' />
         </form>
       </div>
