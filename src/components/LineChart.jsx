@@ -4,12 +4,7 @@ import { Chart } from 'chart.js/auto'
 import { EmployeesList } from "./EmployeesList";
 
 function LineChart ({chartData}) {
-    return (
-        <>
-        <Line data={chartData} />
-        <EmployeesList />
-        </>
-    )
+    return <Line data = {chartData}/>
 }
 
 export default LineChart;
