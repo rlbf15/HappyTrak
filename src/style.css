@@ -7,7 +7,7 @@
 
 body {
   /* background-color: #f6bb93  */
-  background-color: #161d23;
+  background-color: #fffffe;
 }
 
 button {
@@ -78,7 +78,7 @@ button {
   margin-top: 5%;
   display: grid;
   font-family: sans-serif;
-  background-color: #5e8d83;
+  background-color: #bae8e8;
   font-size: 16px;
   justify-content: center;
   margin: auto;
@@ -97,7 +97,7 @@ button {
 
 #surveySubmitButton {
   position: absolute;
-  background-color: #ffffffc6;
+  background-color: #ffd803;
   color: hsl(240, 84%, 12%);
   border: none;
   width: 15%;
@@ -114,7 +114,6 @@ button {
 #surveySubmitButton:hover {
   margin-top: 65px;
   box-shadow: 9px 10px 23px -8px rgba(26, 24, 26, 0.44);
-  background-color: #ffffffea;
 } 
 
 #employeeId {
