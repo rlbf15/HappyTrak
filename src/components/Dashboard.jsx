@@ -31,16 +31,6 @@ export default function Dashboard() {
       });
   }, []);
 
-  function tokenCheck() {
-    if (type === 'employee' && employeeToken === inputToken) {
-      return { nav: navigate('/Survey') };
-    } else if (type === 'employer' && employerToken === inputToken) {
-      return { nav: navigate('/ConfirmEmployer') };
-    } else {
-      return false;
-    }
-  }
-
   function registerUser(event) {
     if (type === 'employee' && employeeToken !== inputToken) {
       return console.log('Please enter the correct token')
@@ -96,16 +86,17 @@ export default function Dashboard() {
 
       .then((data) => data.json())
       .then((response) => {
+        console.log(response)
         console.log('inside authenticate user response')
-        // if (response.ok) {
+
         if (response.type === 'employee') {
           navigate('/survey');
-        } else {
+        } 
+        else if (response.type === 'employer') {
           navigate('/confirmEmployer');
+        } else {
+          console.log('username or password is incorrect')
         }
-        // } else {
-        //   throw new Error('Error authenticating user');
-        // }
       })
       .catch((err) => {
         console.log({ err: err.message });
