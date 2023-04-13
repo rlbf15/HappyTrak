@@ -46,7 +46,7 @@ const ConfirmEmployer = ({ username, password }) => {
       }),
     })
       .then((response) => {
-        console.log('Token was Added! : ' + response)
+        console.log('Token was Added!');
       })
       .catch((err) => {
         console.log({ err: 'Error authenticating user: ' + err });

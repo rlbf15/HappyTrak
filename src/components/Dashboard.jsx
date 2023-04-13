@@ -33,17 +33,22 @@ export default function Dashboard() {
 
   function tokenCheck() {
     if (type === 'employee' && employeeToken === inputToken) {
-      return {nav: navigate('/Survey')};
+      return { nav: navigate('/Survey') };
     } else if (type === 'employer' && employerToken === inputToken) {
-      return {nav: navigate('/ConfirmEmployer')};
+      return { nav: navigate('/ConfirmEmployer') };
     } else {
-      return false; 
+      return false;
     }
   }
 
   function registerUser(event) {
-    const tokenData = tokenCheck()
-    if (!tokenData) return console.log('please enter the corret token:')
+    if (type === 'employee' && employeeToken !== inputToken) {
+      return console.log('Please enter the correct token')
+    }
+    if (type === 'employer' && employerToken !== inputToken) {
+      return console.log('Please enter the correct token')
+    }
+
     event.preventDefault();
     fetch('http://localhost:3000/register', {
       method: 'POST',
@@ -57,9 +62,17 @@ export default function Dashboard() {
       }),
     })
       .then((response) => {
-        console.log("successfully created an account!");
-        tokenData.nav
-
+        if (response.ok && type === 'employee') {
+          console.log("Account created!");
+          navigate('/Survey');
+        } 
+        else if (response.ok && type === 'employer') {
+          console.log("Account created!");
+          navigate('/ConfirmEmployer');
+        } else {
+          console.log("Account already exists!");
+        }
+        
       })
       .catch((err) => {
         console.log({ err: 'Error authenticating user' });
@@ -105,7 +118,7 @@ export default function Dashboard() {
       <section id='dashboardMessage'>
         <h1 className='fade-in-1'>WELCOME</h1> <h1 className='fade-in-2'>TO</h1> <h1 className='fade-in-3'>HAPPYTRAK!</h1>
       </section>
-      
+
       <form className='create-login' onSubmit={registerUser}>
         <h4>Create Account</h4>
 
@@ -183,17 +196,3 @@ export default function Dashboard() {
 
 
 
-
-// <Routes>
-// <Route path='/survey' element={<Survey/> }/>
-// <Route path='/confirmEmployer'  /> } /> 
-// </Routes>
-
-
-        // if (type === 'employee' && employeeToken === inputToken) {
-        //   navigate('/Survey');
-        // } else if (type === 'employer' && employerToken === inputToken) {
-        //   navigate('/ConfirmEmployer');
-        // } else {
-        //   console.log('please enter the corret token');
-        // }
