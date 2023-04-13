@@ -102,7 +102,7 @@ form {
   margin:auto;
   margin-top:7%;
   width: 40%;
-  padding: 50px;
+  padding: 25px;
   border-radius: 20px;
   box-shadow: 0 0 10px #f8fbfdb4;
 }
@@ -137,7 +137,13 @@ form {
 
 }
 
-#confirmSubmit{
+.employerFillIn {
+  display: grid;
+  align-content: space-around;
+  margin: 10px;
+}
+
+#loginButton{
   position:absolute;
   left: 0;
   right: 0;
@@ -148,4 +154,56 @@ form {
   text-align:center;
   text-decoration: none;
   border-radius: 20px;
+}
+
+#displayNames {
+  background-color: gray;
+    display: flex;
+    flex-wrap: wrap;
+    /* max-width: 1000px; */
+    margin: 0 auto;
+    text-align: center;
+}
+
+.allEmployees {
+  background-color: rgb(4, 21, 82);
+  color: white;
+  /* width: 400px; */
+  flex-basis: 20%;
+    border: 1px solid whitesmoke;
+    flex-grow: 3;
+    box-shadow: 1px 1px 10px green;
+    padding: 1rem;
+    margin: 0.5rem;
+}
+
+.responders {
+  background-color: rgb(4, 21, 82);
+  color: white;
+  /* width: 400px; */
+  flex-basis: 20%;
+    border: 1px solid whitesmoke;
+    flex-grow: 3;
+    box-shadow: 1px 1px 10px green;
+    padding: 1rem;
+    margin: 0.5rem;
+}
+
+.nonResponders {
+  background-color: rgb(4, 21, 82);
+  color: white;
+  /* width: 400px; */
+  flex-basis: 20%;
+    border: 1px solid whitesmoke;
+    flex-grow: 3;
+    box-shadow: 1px 1px 10px green;
+    padding: 1rem;
+    margin: 0.5rem;
+}
+
+ul {
+  list-style-type: none;
+  line-height: 2em;
+  list-style: none;
+  
 }
