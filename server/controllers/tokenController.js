@@ -22,6 +22,7 @@ tokenController.saveToken = async (req, res, next) => {
 // update token in the database
 tokenController.updateToken = async (req, res, next) => {
     const { type, token } = req.body;
+    // {type: "employer"/"employee", token: "abc"}
     try {
       // Find the token in the database based on the type property
       const existingToken = await Token.findOne({ type });
@@ -57,11 +58,5 @@ tokenController.getToken = async (req, res, next) => {
     }
 
 };
-  //
-//   {
-//     employeeToken: '123456789',
-//     employerToken: '987654321'
-//   }
-
 
 module.exports = tokenController;
