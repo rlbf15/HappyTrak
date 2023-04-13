@@ -68,20 +68,22 @@ employeeController.getGraph = async (req, res, next) => {
   }
 };
 
-employeeController.tookSurvey = async (req, res, next) => {
+employeeController.getAttendance = async (req, res, next) => {
   const selectQuery = `SELECT week AS week_id,
-  CAST(SUM(question_0) as INT) as question_0_total,
-  CAST(SUM(question_1) as INT) as question_1_total,
-  CAST(SUM(question_2) as INT) as question_2_total,
-  CAST(SUM(question_3) as INT) as question_3_total
-  FROM survey GROUP BY week ORDER BY week ASC`; // must explicitly order
+  e.name as employee_name,
+  e.employee_id as employee_id
+  FROM survey s
+  INNER JOIN employee e ON s.employee_id = e.employee_id
+  WHERE e.took_survey = TRUE
+  GROUP BY week, e.name, e.employee_id 
+  ORDER BY week ASC, e.name ASC;`; // must explicitly order; // must explicitly order
   try {
     const result = await db.query(selectQuery);
     console.log('result.rows: ', result.rows);
-    res.locals.graph = result.rows;
+    res.locals.attendance = result.rows;
     next();
   } catch (err) {
-    baseError.log = `Error caught in getGraph: ${err}`;
+    baseError.log = `Error caught in getAttendance: ${err}`;
     baseError.message.err = `Could not retrieve data`;
     return next(baseError);
   }

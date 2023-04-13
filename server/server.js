@@ -37,6 +37,10 @@ app.get('/api/graph', employeeController.getGraph, (req, res) => {
   res.status(200).json(res.locals.graph);
 });
 
+app.get('/api/attendance', employeeController.getAttendance, (req, res) => {
+  res.status(200).json(res.locals.attendance);
+});
+
 app.get('/api/reset', employeeController.resetAndPopulateData, (req, res) => {
   res.status(200).send('Survey data reset and repopulated');
 });
