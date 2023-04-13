@@ -90,6 +90,16 @@ employeeController.getAttendance = async (req, res, next) => {
 };
 
 // WORK IN PROGRESS
+// const selectQuery = `SELECT week AS week_id,
+//   e.name as employee_name,
+//   e.employee_id as employee_id,
+//   e.took_survey AS took_survey
+//   FROM survey s
+//   RIGHT JOIN employee e ON s.employee_id = e.employee_id
+//   GROUP BY week, e.name, e.employee_id, e.took_survey
+//   ORDER BY week ASC, e.name ASC;`
+
+
 employeeController.tookSurvey = async (req, res, next) => {
   const selectQuery = `SELECT
   e.name AS employee_name,
