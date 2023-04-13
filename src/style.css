@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Philosopher');
+
 * {
   padding: 0;
   margin: 0;
@@ -141,13 +143,28 @@ button {
   overflow: scroll;
 }
 
+.deleteUser {
+  display: flex;
+  border-radius: 5px;
+  background-color: red;
+  color: white;
+  height: 40px;
+  width: 75px;
+  justify-content: center; 
+  align-items: center;
+}
+
+.deleteUser:hover {
+  background-color: rgb(255, 88, 88);
+}
+
 #graph {
   width: min-content;
   height: min-content;
   margin: auto;
   border-radius: 20px;
+  text-decoration: none;
 }
-
 
 #confirmEmployer {
   color: white;
@@ -163,11 +180,18 @@ button {
 }
 
 #confirmSubmit {
-  margin-top: 40px;
+  margin: 30px 0 30px 0;
   height: 60px;
-  width: 80px;
-  text-align: center;
-  text-decoration: none;
+  width: 150px;
+  border-radius: 5px;
+  background-color: lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#confirmSubmit:hover {
+  background-color: #fffdfd;
 }
 
 .sign {
@@ -175,10 +199,33 @@ button {
   color: white;
 }
 
+.quote-header {
+  background-color: #5e8d83;
+  font-family: Philosopher;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 5px;
+  color: #f1f1f1;
+}
+
 .create-login {
   background-color: #5e8d83;
   color: #161d23;
   font-weight: 500;
+}
+
+#change-token {
+  padding: 20px;
+  display: grid;
+  justify-content: center;
+  background-color: #5e8d83;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
 }
 
 /* Animations */
