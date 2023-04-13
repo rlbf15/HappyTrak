@@ -76,4 +76,26 @@ credentialsController.verifyUser = (req, res, next) => {
       });
   };
   
+
+// ability for employer to delete a user
+credentialsController.deleteUser = async (req, res, next) => {
+    const { username } = req.body;
+    console.log('username', username)
+    try {
+        const deletedUser = await User.findOneAndDelete({ username: username });
+        // if deletedUser is null, then the user does not exist in the database
+        if (!deletedUser) {
+            return next({
+                log: `Error: user does not exist.`,
+                message: 'User does not exist.'
+            });
+        }
+        // save the deleted user to res.locals so we can return it to the frontend if needed
+        res.locals.deletedUser = deletedUser;
+        return next();
+    } catch (error) {
+        next(error);
+    }
+}
+
 module.exports = credentialsController;

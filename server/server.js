@@ -12,15 +12,15 @@ const cors = require('cors');
 
 
 
-const dbConnect = async () => {
+const dbConnect = async () =>{
   try {
-    await mongoose.connect('mongodb+srv://velocirabbit:velocirabbit@cluster0.ose86oe.mongodb.net/?retryWrites=true&w=majority', { dbName: 'happytracker' })
+    await mongoose.connect('mongodb+srv://velocirabbit:velocirabbit@cluster0.ose86oe.mongodb.net/?retryWrites=true&w=majority', {dbName: 'happytracker'})
 
     console.log('connected to db')
-  } catch (error) {
+  }catch(error) {
     console.log(error)
   }
-}
+  }
 
   // dbConnect();
 
@@ -36,6 +36,7 @@ app.use(express.static(path.resolve(__dirname, '../src')));
 
 //login route
 app.post('/login', credentialsController.verifyUser, (req, res) => {
+  // res.locals.type looks like {type: 'employee'}
   res.status(200).json(res.locals.type);
 })
 
@@ -49,6 +50,11 @@ app.post('/register', credentialsController.createUser, (req, res) => {
 //   res.status(200).json('tokens created')
 // });
 
+//delete user route
+app.post('/deleteUser', credentialsController.deleteUser, (req, res) => {
+  res.status(200).json({"message": "user deleted"});
+});
+
 //update token route
 app.post('/updateToken', tokenController.updateToken, (req, res) => {
   res.status(200).json('token updated')
@@ -56,11 +62,12 @@ app.post('/updateToken', tokenController.updateToken, (req, res) => {
 
 //get token route
 app.get('/getToken', tokenController.getToken, (req, res) => {
+  // res.locals.token looks like {employeeToken: 'asdf', employerToken: 'asdf' }
   res.status(200).json(res.locals.token);
 })
 
 //save survery to DB
-app.post('/sendSurvey', dataFlowController.saveSurvey, (req, res) => {
+app.post('/sendSurvey', dataFlowController.saveSurvey , (req, res) => {
   res.status(200).json('data saved')
 })
 
