@@ -7,7 +7,8 @@ export const Quotes = [
   "The employers cannot carry on industry nor accumulate profits if they have not got the good will of the workers or their acquiescence in carrying on such industry.",
   "The way you treat your employees is the way they will treat your customers, and that people flourish when they are praised.",
   "Motivating employees to work at their full potential is the main premise of successful management.",
-  "If you do not treat people with the respect they deserve, do not expect any kind of commitment to your productivity goals and target."
+  "If you do not treat people with the respect they deserve, do not expect any kind of commitment to your productivity goals and target.",
+  "Have you spoken to your rubber duck lately?, He missed you."
 ]
 
 
