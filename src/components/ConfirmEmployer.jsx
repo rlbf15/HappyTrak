@@ -79,17 +79,17 @@ const ConfirmEmployer = ({ username, password }) => {
   return (
 
     <div className='confirmContainer'>
-      <div className='create-login'>
+      <div className='quote-header'>
         {quote}
       </div>
       {/* Display users fetched from the database */}
-      <div id='users' className='create-login'>
-        <h1>Users:</h1>
+      <div id='change-token' className='create-login'>
+        <h1 className='userlist'>Current Users:</h1>
         <ul>
           {users.map((user) => (
             <li key={user}>
               {user}
-              <button onClick={() => deleteUser(user)}>Delete</button>
+              <button className='deleteUser' onClick={() => deleteUser(user)}>Delete</button>
             </li>
           ))}
         </ul>
@@ -102,7 +102,7 @@ const ConfirmEmployer = ({ username, password }) => {
       </div>
 
 
-      <div>
+      <div id='change-token'>
         {/* Change employee token form */}
         <form className='create-login' onSubmit={(e) => changeToken(e, 'employee')}>
           <h1>Hello {username} </h1>

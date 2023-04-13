@@ -31,22 +31,14 @@ export default function Dashboard() {
       });
   }, []);
 
-  function tokenCheck() {
-    if (type === 'employee' && employeeToken === inputToken) {
-      return { nav: navigate('/Survey') };
-    } else if (type === 'employer' && employerToken === inputToken) {
-      return { nav: navigate('/ConfirmEmployer') };
-    } else {
-      return false;
-    }
-  }
-
   function registerUser(event) {
     if (type === 'employee' && employeeToken !== inputToken) {
-      return console.log('Please enter the correct token')
+      window.alert('Enter the correct login Token!');
+      return console.log('Please enter the correct token');
     }
     if (type === 'employer' && employerToken !== inputToken) {
-      return console.log('Please enter the correct token')
+      window.alert('Enter the correct login Token!');
+      return console.log('Please enter the correct token');
     }
 
     event.preventDefault();
@@ -65,14 +57,14 @@ export default function Dashboard() {
         if (response.ok && type === 'employee') {
           console.log("Account created!");
           navigate('/Survey');
-        } 
+        }
         else if (response.ok && type === 'employer') {
           console.log("Account created!");
           navigate('/ConfirmEmployer');
         } else {
-          console.log("Account already exists!");
+          window.alert('Account already exists!')
         }
-        
+
       })
       .catch((err) => {
         console.log({ err: 'Error authenticating user' });
@@ -96,16 +88,17 @@ export default function Dashboard() {
 
       .then((data) => data.json())
       .then((response) => {
+        console.log(response)
         console.log('inside authenticate user response')
-        // if (response.ok) {
+
         if (response.type === 'employee') {
           navigate('/survey');
-        } else {
-          navigate('/confirmEmployer');
         }
-        // } else {
-        //   throw new Error('Error authenticating user');
-        // }
+        else if (response.type === 'employer') {
+          navigate('/confirmEmployer');
+        } else {
+          window.alert('username or password is incorrect')
+        }
       })
       .catch((err) => {
         console.log({ err: err.message });
@@ -135,8 +128,9 @@ export default function Dashboard() {
           <input
             id='username'
             name='username'
-            type='text'
+            type='email'
             onChange={(e) => setUsername(e.target.value)}
+          required
           />
           <label value='password'><br />Create password<br /></label>
           <input
