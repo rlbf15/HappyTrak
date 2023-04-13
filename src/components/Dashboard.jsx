@@ -31,8 +31,19 @@ export default function Dashboard() {
       });
   }, []);
 
+  function tokenCheck() {
+    if (type === 'employee' && employeeToken === inputToken) {
+      return {nav: navigate('/Survey')};
+    } else if (type === 'employer' && employerToken === inputToken) {
+      return {nav: navigate('/ConfirmEmployer')};
+    } else {
+      return false; 
+    }
+  }
 
   function registerUser(event) {
+    const tokenData = tokenCheck()
+    if (!tokenData) return console.log('please enter the corret token:')
     event.preventDefault();
     fetch('http://localhost:3000/register', {
       method: 'POST',
@@ -46,13 +57,9 @@ export default function Dashboard() {
       }),
     })
       .then((response) => {
-        if (type === 'employee' && employeeToken === inputToken) {
-          navigate('/Survey');
-        } else if (type === 'employer' && employerToken === inputToken) {
-          navigate('/ConfirmEmployer');
-        } else {
-          console.log('please enter the corret token');
-        }
+        console.log("successfully created an account!");
+        tokenData.nav
+
       })
       .catch((err) => {
         console.log({ err: 'Error authenticating user' });
@@ -181,3 +188,12 @@ export default function Dashboard() {
 // <Route path='/survey' element={<Survey/> }/>
 // <Route path='/confirmEmployer'  /> } /> 
 // </Routes>
+
+
+        // if (type === 'employee' && employeeToken === inputToken) {
+        //   navigate('/Survey');
+        // } else if (type === 'employer' && employerToken === inputToken) {
+        //   navigate('/ConfirmEmployer');
+        // } else {
+        //   console.log('please enter the corret token');
+        // }
