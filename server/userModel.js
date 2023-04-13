@@ -3,13 +3,13 @@
  const bcrypt = require('bcrypt');
 // URI
 // mongodb+srv://velocirabbit:velocirabbit@cluster0.ose86oe.mongodb.net/?retryWrites=true&w=majority
- 
+
 const Salt_Work_Factor = 10;
 
   const Schema = mongoose.Schema;
 
   const userSchema = new Schema({
-    username: { type: String, required: true },
+    username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     type: String
   })
@@ -23,7 +23,7 @@ userSchema.pre('save', function(next) {
           log: `Error in bcrypt.genSalt: ${err}`,
           message: { err: 'Error occured in bcrypt.genSalt'}
       });
-    } 
+    }
     // hash the password using our new salt
     bcrypt.hash(this.password, salt, (err, hash) => {
       if (err) {
