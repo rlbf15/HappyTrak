@@ -1,80 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Philosopher');
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
 body {
-    background-color: hsl(240, 84%, 12%);
+  /* background-color: #f6bb93  */
+  background-color: #161d23;
 }
 
 button {
-    padding: 15px 30px;
-    background-color: white;
-    color: hsl(240, 84%, 12%);
-    width: 30%;
-    margin: auto; 
-    display: flex;
-    justify-content: center;
-    border:none;
+  padding: 15px 30px;
+  background-color: white;
+  color: hsl(240, 84%, 12%);
+  width: 30%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  border: none;
 }
 
 
 /* Dashboard */
 
 #dashboardMessage {
-  color: white; 
-  display: grid;
+  color: white;
+  display: flex;
   justify-content: center;
+  width: 350px;
+  margin: auto;
 }
 
 #dashboardMessage h1 {
-margin:auto;
-margin-bottom: 5%;
-}
-#dashboardMessage h2 {
-margin:auto;
-margin-bottom: 20%;
-}
-#dashboardMessage h4 {
-margin:auto;
-margin-bottom: 5%;
+  margin: auto;
+  margin-bottom: 5%;
 }
 
-#emp_button{
-border-radius: 8px;
-border: none;
-box-shadow: 0 0 60px #f8fbfde3;
-cursor: pointer;
+#dashboardMessage h2 {
+  margin: auto;
+  margin-bottom: 20%;
+}
+
+#dashboardMessage h4 {
+  margin: auto;
+  margin-bottom: 5%;
+}
+
+#emp_button {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 0 60px #f8fbfde3;
+  cursor: pointer;
 
 }
 
 .mainButtons {
-  margin-top: 20%; 
+  margin-top: 5%;
 }
 
 .weekEmployeeId {
   display: flex;
   justify-content: center;
-  margin:auto;
+  margin: auto;
   left: 0;
   right: 0;
 }
 
-#survey h3{
-    color: white;
-    display: grid;
-    margin-bottom: -5%;
-    justify-content: center;
+#surveyHeader {
+  color: #161d23;
+  display: grid;
+  margin-bottom: -5%;
+  justify-content: center;
 }
 
 #survey {
-    margin-top: 18%;
+  margin-top: 5%;
+  display: grid;
+  font-family: sans-serif;
+  background-color: #5e8d83;
+  font-size: 16px;
+  justify-content: center;
+  margin: auto;
+  margin-top: 1%;
+  max-width: 50%;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 9px 10px 23px -8px rgba(26, 24, 26, 0.44);
+  min-width: 550px;
 }
 
 #surveyDescription {
+  color: #161d23;
   font-size: 18px;
 }
 
 #surveySubmitButton {
   position: absolute;
-  background-color:#ffffffc6;
-  color:hsl(240, 84%, 12%);
-  border:none;
+  background-color: #ffffffc6;
+  color: hsl(240, 84%, 12%);
+  border: none;
   width: 15%;
   height: 30px;
   left: 0;
@@ -82,27 +107,20 @@ cursor: pointer;
   margin-top: 70px;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 0 500px #f8fbfde3;
+  border-radius: 5px;
+  transition: 0.5s;
 }
 
-form {
-  font-family:sans-serif; 
-  background-color: #fefefeeb;
-  font-size:16px;
-  /* display: grid; */
-  justify-content: center;
-  margin:auto;
-  margin-top:7%;
-  width: 40%;
-  padding: 50px;
-  border-radius: 20px;
-  box-shadow: 0 0 70px #f8fbfdb4;
-}
+#surveySubmitButton:hover {
+  margin-top: 65px;
+  box-shadow: 9px 10px 23px -8px rgba(26, 24, 26, 0.44);
+  background-color: #ffffffea;
+} 
 
-#employeeId{
+#employeeId {
   /* display:flex; */
   width: max-content;
-  display:flex;
+  display: flex;
   align-items: space-around;
   /* margin-right: 0%; */
   margin-left: 0%;
@@ -110,32 +128,155 @@ form {
   /* justify-content: center; */
 }
 
-.week{
+.week {
   margin: auto;
   margin-right: 0%;
+}
+
+#users {
+  width: 400px;
+  height: 300px;
+  border-radius: 20px;
+  text-align: center;
+  margin: auto;
+  margin-top: 20px;
+  overflow: scroll;
+}
+
+.deleteUser {
+  display: flex;
+  border-radius: 5px;
+  background-color: red;
+  color: white;
+  height: 40px;
+  width: 75px;
+  justify-content: center; 
+  align-items: center;
+}
+
+.deleteUser:hover {
+  background-color: rgb(255, 88, 88);
+}
+
+#graph {
+  width: min-content;
+  height: min-content;
+  margin: auto;
+  border-radius: 20px;
+  text-decoration: none;
 }
 
 #confirmEmployer {
   color: white;
   border: solid;
-  border-color: white; 
+  border-color: white;
   width: 500px;
   border-radius: 30px;
-  margin:20% auto;
+  margin: 20% auto;
   text-align: center;
   padding-bottom: 20px;
   box-shadow: 0 0 70px #f8fbfdc3;
 
 }
 
-#confirmSubmit{
-  position:absolute;
-  left: 0;
-  right: 0;
-  padding: 0 10 -3 10 ;
-  margin-top:40px;
-  height: 40px;
-  width: 80px;
-  text-align:center;
-  text-decoration: none;
+#confirmSubmit {
+  margin: 30px 0 30px 0;
+  height: 60px;
+  width: 150px;
+  border-radius: 5px;
+  background-color: lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+#confirmSubmit:hover {
+  background-color: #fffdfd;
+}
+
+.sign {
+  background-color: rgba(0, 0, 0, 0.18);
+  color: white;
+}
+
+.quote-header {
+  background-color: #5e8d83;
+  font-family: Philosopher;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 5px;
+  color: #f1f1f1;
+}
+
+.create-login {
+  background-color: #5e8d83;
+  color: #161d23;
+  font-weight: 500;
+}
+
+#change-token {
+  padding: 20px;
+  display: grid;
+  justify-content: center;
+  background-color: #5e8d83;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+}
+
+/* Animations */
+
+.fade-in-1 {
+  animation: fadeIn1 3s;
+}
+
+.fade-in-2 {
+  animation: fadeIn2 3s;
+}
+
+.fade-in-3 {
+  animation: fadeIn3 3s;
+}
+
+@keyframes fadeIn1 {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn2 {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn3 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
